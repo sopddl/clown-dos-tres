@@ -1,0 +1,134 @@
+---
+import { Image } from 'astro:assets';
+import Layout from '../layouts/Layout.astro';
+import { site } from '../data/site';
+import poster from '../assets/posters/scene-ouverte-appel.jpg';
+
+const criteres = [
+	'Vos nom / prénom / nom de scène',
+	'Titre du numéro et genre',
+	'La durée estimée de votre passage',
+	'Un descriptif en quelques lignes de votre numéro (support visuel facultatif)',
+	'Nécessité technique (son / plateau / loge)',
+];
+---
+
+<Layout
+	title="Scène Ouverte Clown"
+	description="Appel à participation : Scène Ouverte Clown, par le collectif Clown, dos, très, sur la Péniche Grande Fantaisie."
+>
+	<section class="section intro">
+		<div class="wrap intro-grid">
+			<div>
+				<p class="eyebrow">Appel à participation</p>
+				<h1>Scène Ouverte Clown</h1>
+				<p class="lead">
+					Le collectif <strong>Clown, dos, très</strong> ouvre sa carte blanche aux clowns sur la
+					bien nommée péniche Grande Fantaisie, amarrée sur le Canal de l'Ourcq (Paris 19ᵉ).
+				</p>
+				<p>
+					Un espace de jeu libre et sans filet, pour partager une scène faite sur mesure pour
+					tous les nez et les amoureux du clown ! L'occasion pour les spectateurs d'embarquer à
+					la découverte de numéros éclectiques et d'assister à l'éclosion d'un spectacle unique
+					dans une ambiance conviviale et chaleureuse.
+				</p>
+				<p>
+					Le principe est simple : chaque artiste dispose d'un temps imparti sur un plateau nu.
+					Toutes les formes du clown contemporain sont les bienvenues, la diversité est à
+					l'honneur. Au programme : de grands clowns à la renommée internationale, et d'autres
+					tout juste à peine fraîchement internationalement reconnus !
+				</p>
+				<p>
+					Cette scène ouverte tout public se place sous le signe de la rencontre et de la
+					bienveillance.
+				</p>
+			</div>
+			<Image src={poster} alt="Affiche Scène Ouverte Clown, collectif Clown, dos, très" class="poster" />
+		</div>
+	</section>
+
+	<section class="section section-alt">
+		<div class="wrap cadre-grid">
+			<div>
+				<p class="eyebrow">Le cadre</p>
+				<ul class="cadre-list">
+					<li><strong>Format :</strong> plateau nu de 4/6 mètres, scène type cabaret, jauge de 50 places</li>
+					<li><strong>Passage :</strong> numéro idéalement de 4 à 8 minutes</li>
+					<li>
+						<strong>Technique :</strong> nécessités légères — temps idéal d'installation et remise
+						à nu du plateau : 30 secondes. Toute proposition sera étudiée.
+					</li>
+					<li><strong>Convocation :</strong> les artistes sont convoqués à 18h00 pour la mise en place technique et l'ordre de passage</li>
+				</ul>
+				<p>
+					Parce que le clown est un être généreux, qui prend des risques, cet événement a été
+					pensé dans un esprit de rencontres, d'échange et de bienveillance, avec l'idée que
+					chacun puisse partager son travail personnel.
+				</p>
+			</div>
+			<div>
+				<p class="eyebrow">Pour participer</p>
+				<p>Envoyez-nous un court message avant le <strong>7 octobre</strong>, avec :</p>
+				<ol class="criteres">
+					{criteres.map((critere) => <li>{critere}</li>)}
+				</ol>
+				<a class="btn" href={`mailto:${site.contact.email}?subject=Participation%20Sc%C3%A8ne%20Ouverte%20Clown`}>
+					Écrire à {site.contact.nom}
+				</a>
+				<p class="tel">ou par téléphone au {site.contact.telephone}</p>
+			</div>
+		</div>
+	</section>
+</Layout>
+
+<style>
+	.intro-grid {
+		display: grid;
+		grid-template-columns: 1.2fr 1fr;
+		gap: 2.5rem;
+		align-items: start;
+	}
+
+	.lead {
+		font-size: 1.15rem;
+	}
+
+	.poster {
+		border-radius: 4px;
+		box-shadow: 0 12px 30px var(--ombre);
+	}
+
+	.cadre-grid {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 3rem;
+	}
+
+	.cadre-list {
+		padding-left: 1.2em;
+	}
+
+	.cadre-list li {
+		margin-bottom: 0.6em;
+	}
+
+	.criteres {
+		padding-left: 1.2em;
+	}
+
+	.criteres li {
+		margin-bottom: 0.4em;
+	}
+
+	.tel {
+		margin-top: 0.8em;
+		font-size: 0.9rem;
+	}
+
+	@media (max-width: 760px) {
+		.intro-grid,
+		.cadre-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>

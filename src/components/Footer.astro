@@ -1,0 +1,58 @@
+---
+import { site } from '../data/site';
+const annee = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+	<div class="wrap foot-grid">
+		<div>
+			<p class="eyebrow">Nous trouver</p>
+			<p>
+				{site.peniche.nom}<br />
+				<a href={site.peniche.mapsUrl} target="_blank" rel="noopener">{site.peniche.adresse}</a>
+			</p>
+		</div>
+		<div>
+			<p class="eyebrow">Contact</p>
+			<p>
+				<a href={`mailto:${site.contact.email}`}>{site.contact.email}</a><br />
+				{site.contact.telephone}
+			</p>
+		</div>
+		<div>
+			<p class="eyebrow">{site.nom}</p>
+			<p>{site.description}</p>
+		</div>
+	</div>
+	<p class="copy">© {annee} {site.nom} — Les Mercredis du Clown</p>
+</footer>
+
+<style>
+	.site-footer {
+		background: var(--encre);
+		color: var(--creme);
+		padding-block: 3rem 1.5rem;
+		margin-top: 4rem;
+	}
+
+	.foot-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+		gap: 2rem;
+	}
+
+	.foot-grid p {
+		margin: 0.3em 0 0;
+	}
+
+	.foot-grid a {
+		color: var(--or);
+	}
+
+	.copy {
+		text-align: center;
+		opacity: 0.6;
+		font-size: 0.85rem;
+		margin: 2.5rem 0 0;
+	}
+</style>

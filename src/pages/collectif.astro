@@ -1,0 +1,112 @@
+---
+import { Image } from 'astro:assets';
+import Layout from '../layouts/Layout.astro';
+import { site } from '../data/site';
+import portrait from '../assets/photos/9bfebea5-83a1-4723-8135-d1fccf9fdb10-1.jpg';
+import clownologie from '../assets/posters/clownologie.jpg';
+import cabaret from '../assets/posters/cabaret-clown-usine-1.jpg';
+---
+
+<Layout title="Le Collectif" description="Le collectif Clown, dos, très et la Péniche Grande Fantaisie.">
+	<section class="section intro">
+		<div class="wrap intro-grid">
+			<Image src={portrait} alt="François Durègne en clown, sur scène" class="portrait" />
+			<div>
+				<p class="eyebrow">Le Collectif</p>
+				<h1>Clown, dos, très</h1>
+				<p>
+					<strong>Clown, dos, très</strong> réunit des artistes clowns qui animent Les Mercredis
+					du Clown sur la Péniche Grande Fantaisie, à Paris. Parmi eux, <strong>François
+					Durègne</strong>, clown et metteur en scène.
+				</p>
+				<p>
+					Le collectif ouvre régulièrement le plateau à d'autres artistes lors de ses scènes
+					ouvertes, dans un esprit de rencontre et de bienveillance — grands clowns à la
+					renommée internationale ou tout juste fraîchement internationalement reconnus.
+				</p>
+			</div>
+		</div>
+	</section>
+
+	<section class="section section-alt">
+		<div class="wrap">
+			<p class="eyebrow">Sur la même péniche</p>
+			<h2>Cabaret Clown &amp; Clownologie</h2>
+			<p>
+				D'autres rendez-vous clown ponctuent également la programmation de la péniche, portés
+				par l'atelier hebdomadaire Clown à l'Usine (Chapal, Montreuil) — dont François Durègne
+				fait aussi partie.
+			</p>
+			<div class="affiches">
+				<Image src={cabaret} alt="Affiche Cabaret Clown à l'Usine" />
+				<Image src={clownologie} alt="Affiche Clownologie" />
+			</div>
+		</div>
+	</section>
+
+	<section class="section">
+		<div class="wrap peniche-grid">
+			<div>
+				<p class="eyebrow">Le lieu</p>
+				<h2>{site.peniche.nom}</h2>
+				<p>
+					Amarrée sur le Canal de l'Ourcq, au bord du quai de l'Oise dans le 19ᵉ arrondissement
+					de Paris, la Péniche Grande Fantaisie accueille chaque mercredi la programmation du
+					collectif : ateliers, spectacles, créations jeune public, cabarets et scènes ouvertes.
+				</p>
+				<a class="btn" href={site.peniche.mapsUrl} target="_blank" rel="noopener">
+					{site.peniche.adresse}
+				</a>
+			</div>
+			<div>
+				<p class="eyebrow">Contact</p>
+				<h2>Nous écrire</h2>
+				<p>
+					Pour proposer un numéro, rejoindre une scène ouverte ou toute question sur la
+					programmation, contactez {site.contact.nom} :
+				</p>
+				<p>
+					<a href={`mailto:${site.contact.email}`}>{site.contact.email}</a><br />
+					{site.contact.telephone}
+				</p>
+			</div>
+		</div>
+	</section>
+</Layout>
+
+<style>
+	.intro-grid {
+		display: grid;
+		grid-template-columns: 340px 1fr;
+		gap: 2.5rem;
+		align-items: start;
+	}
+
+	.portrait {
+		border-radius: 4px;
+	}
+
+	.affiches {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+		gap: 1.5rem;
+		margin-top: 1.5rem;
+	}
+
+	.affiches img {
+		border-radius: 4px;
+	}
+
+	.peniche-grid {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 3rem;
+	}
+
+	@media (max-width: 760px) {
+		.intro-grid,
+		.peniche-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>

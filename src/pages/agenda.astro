@@ -1,0 +1,30 @@
+---
+import Layout from '../layouts/Layout.astro';
+import EventCard from '../components/EventCard.astro';
+import { evenements } from '../data/evenements';
+---
+
+<Layout title="Agenda" description="Toutes les dates des Mercredis du Clown sur la Péniche Grande Fantaisie.">
+	<section class="section">
+		<div class="wrap">
+			<p class="eyebrow">Calendrier</p>
+			<h1>Agenda</h1>
+			<p>
+				Toute la programmation des Mercredis du Clown. De nouvelles dates s'ajoutent au fil des
+				saisons — revenez régulièrement !
+			</p>
+			<div class="grid">
+				{evenements.map((evenement) => <EventCard evenement={evenement} />)}
+			</div>
+		</div>
+	</section>
+</Layout>
+
+<style>
+	.grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+		gap: 1.5rem;
+		margin-top: 2rem;
+	}
+</style>

@@ -1,0 +1,87 @@
+---
+import type { Evenement } from '../data/evenements';
+
+interface Props {
+	evenement: Evenement;
+}
+
+const { evenement } = Astro.props;
+
+const labels: Record<Evenement['type'], string> = {
+	'scene-ouverte': 'Scène ouverte',
+	clownologie: 'Clownologie',
+	cabaret: 'Cabaret',
+	atelier: 'Atelier',
+	autre: 'Rendez-vous',
+};
+---
+
+<article class={`event-card ${evenement.type}`}>
+	<span class={`badge ${evenement.type === 'scene-ouverte' ? 'scene-ouverte' : ''}`}>
+		{labels[evenement.type]}
+	</span>
+	<h3>{evenement.date}</h3>
+	{evenement.heure && <p class="heure">{evenement.heure}</p>}
+	<p class="titre">{evenement.titre}</p>
+	{evenement.description && <p class="desc">{evenement.description}</p>}
+	<p class="infos">
+		{evenement.lieu}
+		{evenement.prix && ` · ${evenement.prix}`}
+	</p>
+	{
+		evenement.lien && (
+			<a class="btn" href={evenement.lien}>
+				En savoir plus
+			</a>
+		)
+	}
+</article>
+
+<style>
+	.event-card {
+		background: var(--creme-clair);
+		border: 1px solid var(--ombre);
+		border-left: 5px solid var(--or);
+		border-radius: 4px;
+		padding: 1.5rem;
+		display: flex;
+		flex-direction: column;
+		gap: 0.4rem;
+	}
+
+	.event-card.scene-ouverte {
+		border-left-color: var(--rouge);
+	}
+
+	h3 {
+		font-size: 1.1rem;
+		margin: 0.3em 0 0;
+	}
+
+	.heure {
+		margin: 0;
+		font-style: italic;
+		color: var(--rouge-vif);
+	}
+
+	.titre {
+		font-weight: 700;
+		margin: 0.2em 0;
+	}
+
+	.desc {
+		margin: 0;
+		font-size: 0.95rem;
+	}
+
+	.infos {
+		margin: 0.4em 0 0;
+		font-size: 0.85rem;
+		opacity: 0.75;
+	}
+
+	.btn {
+		align-self: flex-start;
+		margin-top: 0.6rem;
+	}
+</style>

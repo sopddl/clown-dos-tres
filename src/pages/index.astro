@@ -1,0 +1,140 @@
+---
+import { Image } from 'astro:assets';
+import Layout from '../layouts/Layout.astro';
+import EventCard from '../components/EventCard.astro';
+import { site } from '../data/site';
+import { evenements } from '../data/evenements';
+import hero from '../assets/photos/hero-francois.jpg';
+import photoGroupe from '../assets/photos/8d5ffa21-dcdf-4aab-a2f1-da88d4f3944c-1.jpg';
+
+const prochains = evenements.slice(0, 3);
+---
+
+<Layout title="Accueil">
+	<section class="hero">
+		<Image src={hero} alt="Un clown du collectif en représentation sur la Péniche Grande Fantaisie" class="hero-img" />
+		<div class="hero-overlay">
+			<div class="wrap hero-content">
+				<p class="eyebrow">{site.peniche.nom} · Paris 19e</p>
+				<h1>{site.accroche}</h1>
+				<p class="lead">{site.description}</p>
+				<div class="cta">
+					<a class="btn" href="/agenda">Voir les prochaines dates</a>
+					<a class="btn btn-outline" href="/scene-ouverte">Participer à la Scène Ouverte</a>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="section">
+		<div class="wrap">
+			<p class="eyebrow">Présentation</p>
+			<h2>Un rendez-vous clown, chaque semaine</h2>
+			<p>
+				Animés par le collectif <strong>Clown, dos, très</strong>, les Mercredis du Clown se
+				veulent ouverts à toutes et à tous, de très jeunes à jeunes, jusqu'à moins jeunes, et
+				beaucoup moins jeunes… Clowns en herbe ou professionnels avisés.
+			</p>
+			<p>
+				Au menu de la programmation : des ateliers, des spectacles, des créations jeune public,
+				des cabarets, des scènes ouvertes, des surprises… Alors, n'hésitez pas, suivez la
+				programmation !
+			</p>
+		</div>
+	</section>
+
+	<section class="section section-alt">
+		<div class="wrap">
+			<p class="eyebrow">À venir</p>
+			<h2>Prochains rendez-vous</h2>
+			<div class="grid">
+				{prochains.map((evenement) => <EventCard evenement={evenement} />)}
+			</div>
+			<a class="btn" href="/agenda">Tout l'agenda</a>
+		</div>
+	</section>
+
+	<section class="section photo-section">
+		<div class="wrap photo-grid">
+			<Image src={photoGroupe} alt="Le collectif de clowns réuni sur la péniche, ballons colorés au plafond" />
+			<div>
+				<p class="eyebrow">Le Collectif</p>
+				<h2>Clown, dos, très</h2>
+				<p>
+					Un collectif d'artistes clowns, dont François Durègne, qui anime la programmation de
+					la Péniche Grande Fantaisie et ouvre régulièrement le plateau à d'autres artistes lors
+					des scènes ouvertes.
+				</p>
+				<a class="btn" href="/collectif">Découvrir le collectif</a>
+			</div>
+		</div>
+	</section>
+</Layout>
+
+<style>
+	.hero {
+		position: relative;
+		min-height: 78vh;
+		display: flex;
+		align-items: flex-end;
+	}
+
+	.hero-img {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		object-position: center 20%;
+	}
+
+	.hero-overlay {
+		position: relative;
+		width: 100%;
+		background: linear-gradient(0deg, rgba(36, 21, 18, 0.92) 10%, rgba(36, 21, 18, 0.2) 80%);
+		padding-block: 4rem 3rem;
+	}
+
+	.hero-content h1 {
+		color: var(--creme-clair);
+		font-size: clamp(2.5rem, 7vw, 4.5rem);
+		margin: 0.1em 0 0.3em;
+	}
+
+	.hero-content .lead {
+		color: var(--creme);
+		max-width: 42em;
+		font-size: 1.1rem;
+	}
+
+	.cta {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 1rem;
+		margin-top: 1.5rem;
+	}
+
+	.grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+		gap: 1.5rem;
+		margin: 2rem 0;
+	}
+
+	.photo-grid {
+		display: grid;
+		grid-template-columns: 1.1fr 1fr;
+		gap: 2.5rem;
+		align-items: center;
+	}
+
+	.photo-grid img {
+		border-radius: 4px;
+	}
+
+	@media (max-width: 760px) {
+		.photo-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>
