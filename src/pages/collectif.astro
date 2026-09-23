@@ -10,7 +10,9 @@ import cabaret from '../assets/posters/cabaret-clown-usine-1.jpg';
 <Layout title="Le Collectif" description="Le collectif Clown, dos, très et la Péniche Grande Fantaisie.">
 	<section class="section intro">
 		<div class="wrap intro-grid">
-			<Image src={portrait} alt="François Durègne en clown, sur scène" class="portrait" />
+			<div class="portrait">
+				<Image src={portrait} alt="François Durègne en clown, sur scène" />
+			</div>
 			<div>
 				<p class="eyebrow">Le Collectif</p>
 				<h1>Clown, dos, très</h1>
@@ -38,8 +40,12 @@ import cabaret from '../assets/posters/cabaret-clown-usine-1.jpg';
 				fait aussi partie.
 			</p>
 			<div class="affiches">
-				<Image src={cabaret} alt="Affiche Cabaret Clown à l'Usine" />
-				<Image src={clownologie} alt="Affiche Clownologie" />
+				<div class="affiche-tile">
+					<Image src={cabaret} alt="Affiche Cabaret Clown à l'Usine" />
+				</div>
+				<div class="affiche-tile">
+					<Image src={clownologie} alt="Affiche Clownologie" />
+				</div>
 			</div>
 		</div>
 	</section>
@@ -83,7 +89,16 @@ import cabaret from '../assets/posters/cabaret-clown-usine-1.jpg';
 	}
 
 	.portrait {
+		aspect-ratio: 2 / 3;
+		overflow: hidden;
 		border-radius: 4px;
+	}
+
+	.portrait :global(img) {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		display: block;
 	}
 
 	.affiches {
@@ -93,8 +108,17 @@ import cabaret from '../assets/posters/cabaret-clown-usine-1.jpg';
 		margin-top: 1.5rem;
 	}
 
-	.affiches img {
+	.affiche-tile {
+		aspect-ratio: 3 / 4;
+		overflow: hidden;
 		border-radius: 4px;
+	}
+
+	.affiche-tile :global(img) {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		display: block;
 	}
 
 	.peniche-grid {

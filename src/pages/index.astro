@@ -56,7 +56,9 @@ const prochains = evenements.slice(0, 3);
 
 	<section class="section photo-section">
 		<div class="wrap photo-grid">
-			<Image src={photoGroupe} alt="Le collectif de clowns réuni sur la péniche, ballons colorés au plafond" />
+			<div class="groupe-tile">
+				<Image src={photoGroupe} alt="Le collectif de clowns réuni sur la péniche, ballons colorés au plafond" />
+			</div>
 			<div>
 				<p class="eyebrow">Le Collectif</p>
 				<h2>Clown, dos, très</h2>
@@ -128,8 +130,17 @@ const prochains = evenements.slice(0, 3);
 		align-items: center;
 	}
 
-	.photo-grid img {
+	.groupe-tile {
+		aspect-ratio: 3 / 2;
+		overflow: hidden;
 		border-radius: 4px;
+	}
+
+	.groupe-tile :global(img) {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		display: block;
 	}
 
 	@media (max-width: 760px) {
