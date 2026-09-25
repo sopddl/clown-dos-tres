@@ -9,7 +9,10 @@ const photosModules = import.meta.glob<{ default: ImageMetadata }>('../assets/ph
 const photos = Object.values(photosModules).map((mod) => mod.default);
 ---
 
-<Layout title="Galerie" description="Photos des spectacles et scènes ouvertes du collectif Clown, dos, très.">
+<Layout
+	title="Galerie"
+	description="Photos des Mercredis du Clown : spectacles, cabarets et scènes ouvertes du collectif Clown, dos, très sur la Péniche Grande Fantaisie, Paris 19e."
+>
 	<section class="section">
 		<div class="wrap">
 			<p class="eyebrow">En scène</p>

@@ -4,13 +4,19 @@ import Layout from '../layouts/Layout.astro';
 import EventCard from '../components/EventCard.astro';
 import { site } from '../data/site';
 import { evenements } from '../data/evenements';
+import { evenementSchema } from '../data/schema';
 import hero from '../assets/photos/hero-francois.jpg';
 import photoGroupe from '../assets/photos/8d5ffa21-dcdf-4aab-a2f1-da88d4f3944c-1.jpg';
 
 const prochains = evenements.slice(0, 3);
 ---
 
-<Layout title="Accueil">
+<Layout
+	title="Accueil"
+	fullTitle="Les Mercredis du Clown · Péniche Grande Fantaisie, Paris 19e"
+	description="Ateliers, spectacles, cabarets et scènes ouvertes clown chaque mercredi sur la Péniche Grande Fantaisie, canal de l'Ourcq, Paris 19e. Collectif Clown, dos, très."
+	schema={prochains.map(evenementSchema)}
+>
 	<section class="hero">
 		<Image src={hero} alt="Un clown du collectif en représentation sur la Péniche Grande Fantaisie" class="hero-img" />
 		<div class="hero-overlay">

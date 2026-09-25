@@ -2,9 +2,14 @@
 import Layout from '../layouts/Layout.astro';
 import EventCard from '../components/EventCard.astro';
 import { evenements } from '../data/evenements';
+import { evenementSchema } from '../data/schema';
 ---
 
-<Layout title="Agenda" description="Toutes les dates des Mercredis du Clown sur la Péniche Grande Fantaisie.">
+<Layout
+	title="Agenda"
+	description="Agenda des Mercredis du Clown : scènes ouvertes, spectacles Clownologie et ateliers clown sur la Péniche Grande Fantaisie, Paris 19e. Dates, horaires et tarifs."
+	schema={evenements.map(evenementSchema)}
+>
 	<section class="section">
 		<div class="wrap">
 			<p class="eyebrow">Calendrier</p>

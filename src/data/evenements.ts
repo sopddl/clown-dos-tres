@@ -3,6 +3,8 @@
 
 export type Evenement = {
 	date: string; // format libre affiché tel quel, ex. "Mercredi 14 octobre 2026"
+	jour: string; // même date au format AAAA-MM-JJ, lu par Google (données structurées)
+	debut?: string; // heure de début au format HH:MM, lue par Google
 	heure?: string;
 	titre: string;
 	description?: string;
@@ -15,12 +17,15 @@ export type Evenement = {
 export const evenements: Evenement[] = [
 	{
 		date: 'Mercredi 30 septembre 2026',
+		jour: '2026-09-30',
 		titre: 'Cours de salsa pour clowns',
 		type: 'atelier',
 		lieu: 'Péniche Grande Fantaisie',
 	},
 	{
 		date: 'Mercredi 14 octobre 2026',
+		jour: '2026-10-14',
+		debut: '20:00',
 		heure: '19h30 (ouverture) — passages à partir de 20h00',
 		titre: 'Scène Ouverte Clown — 1ère édition',
 		description:
@@ -31,6 +36,7 @@ export const evenements: Evenement[] = [
 	},
 	{
 		date: 'Mercredi 11 novembre 2026',
+		jour: '2026-11-11',
 		titre: 'Clownologie',
 		description: 'Spectacle cabaret par le collectif Clown à l’Usine.',
 		lieu: 'Péniche Grande Fantaisie',
@@ -38,6 +44,7 @@ export const evenements: Evenement[] = [
 	},
 	{
 		date: 'Mercredi 18 novembre 2026',
+		jour: '2026-11-18',
 		titre: 'Clownologie',
 		description: 'Spectacle cabaret par le collectif Clown à l’Usine.',
 		lieu: 'Péniche Grande Fantaisie',
@@ -45,6 +52,7 @@ export const evenements: Evenement[] = [
 	},
 	{
 		date: 'Mercredi 25 novembre 2026',
+		jour: '2026-11-25',
 		titre: 'Scène Ouverte Clown — 2nde édition',
 		lieu: 'Péniche Grande Fantaisie',
 		type: 'scene-ouverte',
