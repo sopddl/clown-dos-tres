@@ -5,6 +5,21 @@ import { site } from '../data/site';
 import portrait from '../assets/photos/9bfebea5-83a1-4723-8135-d1fccf9fdb10-1.jpg';
 import clownologie from '../assets/posters/clownologie.jpg';
 import cabaret from '../assets/posters/cabaret-clown-usine-1.jpg';
+import salut from '../assets/photos/salut-troupe.jpg';
+import duo from '../assets/photos/duo-paravent.jpg';
+import trench from '../assets/photos/clown-trench.jpg';
+import drape1 from '../assets/photos/clown-drape-1.jpg';
+import drape2 from '../assets/photos/clown-drape-2.jpg';
+import marie from '../assets/photos/marie-cafe-de-paris.jpg';
+
+const enImages = [
+	{ src: salut, alt: 'Salut final de la troupe de clowns sur la scène de la Péniche Grande Fantaisie' },
+	{ src: duo, alt: 'Duo de clowns au nez rouge devant un paravent fleuri, sur la péniche' },
+	{ src: trench, alt: 'Clown en trench-coat et chaussettes rayées, un carnet à la main' },
+	{ src: drape1, alt: 'Clown drapé dans un tissu gris face au public, spectacle Clownologie' },
+	{ src: drape2, alt: 'Clown drapé, la main sur le cœur, devant les enfants du public' },
+	{ src: marie, alt: 'Marie en clown, veste rouge et nœud vert, sur la scène du Café de Paris' },
+];
 ---
 
 <Layout title="Le Collectif" description="Le collectif Clown, dos, très et la Péniche Grande Fantaisie.">
@@ -51,6 +66,28 @@ import cabaret from '../assets/posters/cabaret-clown-usine-1.jpg';
 	</section>
 
 	<section class="section">
+		<div class="wrap">
+			<p class="eyebrow">En scène</p>
+			<h2>En images</h2>
+			<div class="en-images">
+				{
+					enImages.map((photo) => (
+						<div class="photo-tile">
+							<Image
+								src={photo.src}
+								alt={photo.alt}
+								widths={[400, 800]}
+								sizes="(max-width: 760px) 100vw, 33vw"
+							/>
+						</div>
+					))
+				}
+			</div>
+			<a class="btn" href="/galerie">Toute la galerie</a>
+		</div>
+	</section>
+
+	<section class="section section-alt">
 		<div class="wrap peniche-grid">
 			<div>
 				<p class="eyebrow">Le lieu</p>
@@ -115,6 +152,26 @@ import cabaret from '../assets/posters/cabaret-clown-usine-1.jpg';
 	}
 
 	.affiche-tile :global(img) {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		display: block;
+	}
+
+	.en-images {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+		gap: 1rem;
+		margin: 1.5rem 0 2rem;
+	}
+
+	.photo-tile {
+		aspect-ratio: 3 / 2;
+		overflow: hidden;
+		border-radius: 4px;
+	}
+
+	.photo-tile :global(img) {
 		width: 100%;
 		height: 100%;
 		object-fit: cover;
