@@ -7,6 +7,10 @@ const photosModules = import.meta.glob<{ default: ImageMetadata }>('../assets/ph
 	eager: true,
 });
 const photos = Object.values(photosModules).map((mod) => mod.default);
+// Deux blocs : les paysages puis les portraits, chacun dans des cases à son format (pas de recadrage).
+const paysages = photos.filter((photo) => photo.width >= photo.height);
+const portraits = photos.filter((photo) => photo.width < photo.height);
+const alt = "Photo d'un spectacle du collectif Clown, dos, très sur la Péniche Grande Fantaisie";
 ---
 
 <Layout
@@ -18,16 +22,20 @@ const photos = Object.values(photosModules).map((mod) => mod.default);
 			<p class="eyebrow">En scène</p>
 			<h1>Galerie</h1>
 			<p>Quelques instants des Mercredis du Clown, capturés sur la péniche.</p>
-			<div class="grid">
+			<div class="grid grid-paysage">
 				{
-					photos.map((photo) => (
-						<div class="tile">
-							<Image
-								src={photo}
-								alt="Photo d'un spectacle du collectif Clown, dos, très sur la Péniche Grande Fantaisie"
-								widths={[320, 640]}
-								sizes="(max-width: 700px) 45vw, 300px"
-							/>
+					paysages.map((photo) => (
+						<div class="tile tile-paysage">
+							<Image src={photo} alt={alt} widths={[400, 800]} sizes="(max-width: 700px) 100vw, 380px" />
+						</div>
+					))
+				}
+			</div>
+			<div class="grid grid-portrait">
+				{
+					portraits.map((photo) => (
+						<div class="tile tile-portrait">
+							<Image src={photo} alt={alt} widths={[320, 640]} sizes="(max-width: 700px) 45vw, 300px" />
 						</div>
 					))
 				}
@@ -40,14 +48,28 @@ const photos = Object.values(photosModules).map((mod) => mod.default);
 	.grid {
 		margin-top: 2rem;
 		display: grid;
-		grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
 		gap: 1rem;
 	}
 
+	.grid-paysage {
+		grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+	}
+
+	.grid-portrait {
+		grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+	}
+
 	.tile {
-		aspect-ratio: 3 / 4;
 		overflow: hidden;
 		border-radius: 3px;
+	}
+
+	.tile-paysage {
+		aspect-ratio: 16 / 9;
+	}
+
+	.tile-portrait {
+		aspect-ratio: 1654 / 2339;
 	}
 
 	.tile :global(img) {
