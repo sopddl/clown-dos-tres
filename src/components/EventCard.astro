@@ -11,6 +11,7 @@ const labels: Record<Evenement['type'], string> = {
 	'scene-ouverte': 'Scène ouverte',
 	clownologie: 'Clownologie',
 	cabaret: 'Cabaret',
+	spectacle: 'Spectacle',
 	atelier: 'Atelier',
 	autre: 'Rendez-vous',
 };
@@ -24,6 +25,7 @@ const labels: Record<Evenement['type'], string> = {
 	{evenement.heure && <p class="heure">{evenement.heure}</p>}
 	<p class="titre">{evenement.titre}</p>
 	{evenement.description && <p class="desc">{evenement.description}</p>}
+	{evenement.compagnie && <p class="desc compagnie">Par la {evenement.compagnie}</p>}
 	<p class="infos">
 		{evenement.lieu}
 		{evenement.prix && ` · ${evenement.prix}`}
@@ -51,6 +53,20 @@ const labels: Record<Evenement['type'], string> = {
 
 	.event-card.scene-ouverte {
 		border-left-color: var(--rouge);
+	}
+
+	/* Ateliers : un jaune plus clair pour les distinguer des spectacles. */
+	.event-card.atelier {
+		background: #fdf4d3;
+		border-left-color: #efd27a;
+	}
+
+	.event-card.atelier .badge {
+		background: #f3dc8f;
+	}
+
+	.compagnie {
+		font-style: italic;
 	}
 
 	h3 {

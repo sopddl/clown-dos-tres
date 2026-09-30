@@ -68,7 +68,7 @@ export function evenementSchema(e: Evenement) {
 			performer: {
 				'@type': 'PerformingGroup',
 				// Clownologie et les cabarets sont joués par l'atelier Clown à l'Usine (voir page Collectif).
-				name: e.type === 'clownologie' || e.type === 'cabaret' ? 'Clown à l’Usine' : site.nom,
+				name: e.compagnie ?? (e.type === 'clownologie' || e.type === 'cabaret' ? 'Clown à l’Usine' : site.nom),
 			},
 		}),
 		...(montant && {

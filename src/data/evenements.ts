@@ -1,5 +1,5 @@
 // Pour ajouter ou modifier une date : éditez simplement ce tableau.
-// "type" contrôle le badge affiché : scene-ouverte | clownologie | cabaret | atelier | autre
+// "type" contrôle le badge affiché : scene-ouverte | clownologie | cabaret | spectacle | atelier | autre
 
 export type Evenement = {
 	date: string; // format libre affiché tel quel, ex. "Mercredi 14 octobre 2026"
@@ -10,8 +10,9 @@ export type Evenement = {
 	description?: string;
 	lieu?: string;
 	prix?: string;
-	type: 'scene-ouverte' | 'clownologie' | 'cabaret' | 'atelier' | 'autre';
+	type: 'scene-ouverte' | 'clownologie' | 'cabaret' | 'spectacle' | 'atelier' | 'autre';
 	lien?: string;
+	compagnie?: string; // troupe invitée, affichée « Par … » et lue par Google
 };
 
 export const evenements: Evenement[] = [
@@ -45,10 +46,12 @@ export const evenements: Evenement[] = [
 	{
 		date: 'Mercredi 18 novembre 2026',
 		jour: '2026-11-18',
-		titre: 'Clownologie',
-		description: 'Spectacle cabaret par le collectif Clown à l’Usine.',
+		titre: 'Shaker',
+		description:
+			'Un condensé des pièces de Shakespeare servi sous forme de « cocktails shakespeariens ». Vous prendrez bien un zest de Shakespeare ?',
+		compagnie: 'Compagnie Les chants égarés',
 		lieu: 'Péniche Grande Fantaisie',
-		type: 'clownologie',
+		type: 'spectacle',
 	},
 	{
 		date: 'Mercredi 25 novembre 2026',

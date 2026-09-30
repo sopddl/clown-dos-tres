@@ -1,5 +1,6 @@
 export const site = {
 	nom: 'Clown, dos, très',
+	nomLogo: 'Clown, dos, tres', // logo du bandeau : sans accent (demande Sophie 2026-09-30)
 	accroche: 'Les Mercredis du Clown',
 	description:
 		'Un rendez-vous clown hebdomadaire sur la Péniche Grande Fantaisie, à Paris — ateliers, spectacles, cabarets et scènes ouvertes, ouverts à toutes et tous.',
