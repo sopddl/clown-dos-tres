@@ -10,7 +10,7 @@ export const site = {
 	},
 	contact: {
 		nom: 'Pancho',
-		email: 'pancho.fdl73@gmail.com',
-		telephone: '06 23 79 98 11',
+		// Redirection OVH vers la boîte de Pancho : ne pas afficher son adresse ni son téléphone.
+		email: 'contact@clowndostres.com',
 	},
 };

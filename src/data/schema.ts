@@ -26,7 +26,6 @@ export const collectif = {
 	logo: `${SITE_URL}/favicon.svg`,
 	image: `${SITE_URL}/og-image.jpg`,
 	email: site.contact.email,
-	telephone: '+33623799811',
 	location: lieu,
 };
 
