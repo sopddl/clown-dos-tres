@@ -6,7 +6,7 @@ import { collectif, siteWeb } from '../data/schema';
 
 interface Props {
 	title: string;
-	/** Titre complet de l'onglet, sans le suffixe « · Clown, dos, très » (ex. accueil). */
+	/** Titre complet de l'onglet, sans le suffixe « · Clown, dos, tres » (ex. accueil). */
 	fullTitle?: string;
 	description?: string;
 	image?: string;
@@ -22,7 +22,7 @@ const {
 	schema = [],
 } = Astro.props;
 
-const pageTitle = fullTitle ?? `${title} · Clown, dos, très`;
+const pageTitle = fullTitle ?? `${title} · Clown, dos, tres`;
 const jsonLd = JSON.stringify({
 	'@context': 'https://schema.org',
 	'@graph': [collectif, siteWeb, ...schema],
@@ -49,7 +49,7 @@ const imageURL = new URL(image, Astro.site);
 
 		<!-- Open Graph -->
 		<meta property="og:type" content="website" />
-		<meta property="og:site_name" content="Clown, dos, très" />
+		<meta property="og:site_name" content="Clown, dos, tres" />
 		<meta property="og:title" content={pageTitle} />
 		<meta property="og:description" content={description} />
 		<meta property="og:url" content={canonicalURL} />

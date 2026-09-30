@@ -30,7 +30,7 @@ export const evenements: Evenement[] = [
 		heure: '19h30 (ouverture) — passages à partir de 20h00',
 		titre: 'Scène Ouverte Clown — 1ère édition',
 		description:
-			"Le collectif Clown, dos, très ouvre sa carte blanche aux clowns : un plateau nu, sans filet, pour une soirée de numéros et une rencontre de clowns.",
+			"Le collectif Clown, dos, tres ouvre sa carte blanche aux clowns : un plateau nu, sans filet, pour une soirée de numéros et une rencontre de clowns.",
 		lieu: 'Péniche Grande Fantaisie, 3 quai de l’Oise, 75019 Paris',
 		prix: '8 €',
 		type: 'scene-ouverte',

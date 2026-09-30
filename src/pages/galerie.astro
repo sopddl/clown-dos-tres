@@ -10,12 +10,12 @@ const photos = Object.values(photosModules).map((mod) => mod.default);
 // Deux blocs : les paysages puis les portraits, chacun dans des cases à son format (pas de recadrage).
 const paysages = photos.filter((photo) => photo.width >= photo.height);
 const portraits = photos.filter((photo) => photo.width < photo.height);
-const alt = "Photo d'un spectacle du collectif Clown, dos, très sur la Péniche Grande Fantaisie";
+const alt = "Photo d'un spectacle du collectif Clown, dos, tres sur la Péniche Grande Fantaisie";
 ---
 
 <Layout
 	title="Galerie"
-	description="Photos des Mercredis du Clown : spectacles, cabarets et scènes ouvertes du collectif Clown, dos, très sur la Péniche Grande Fantaisie, Paris 19e."
+	description="Photos des Mercredis du Clown : spectacles, cabarets et scènes ouvertes du collectif Clown, dos, tres sur la Péniche Grande Fantaisie, Paris 19e."
 >
 	<section class="section">
 		<div class="wrap">
