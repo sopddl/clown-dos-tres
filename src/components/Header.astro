@@ -16,6 +16,7 @@ const current = Astro.url.pathname;
 	<div class="wrap bar">
 		<a href="/" class="logo">
 			<span class="logo-nom">{site.nom}</span>
+			<span class="logo-sous">présente</span>
 		</a>
 		<nav aria-label="Navigation principale">
 			<ul>
@@ -55,6 +56,13 @@ const current = Astro.url.pathname;
 		display: flex;
 		flex-direction: column;
 		line-height: 1.1;
+	}
+
+	.logo-sous {
+		font-size: 0.75rem;
+		font-family: 'Libre Baskerville', serif;
+		font-style: italic;
+		color: var(--or);
 	}
 
 	.logo-nom {

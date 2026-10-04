@@ -61,13 +61,13 @@ export function evenementSchema(e: Evenement) {
 		eventStatus: 'https://schema.org/EventScheduled',
 		eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
 		location: lieu,
-		image: `${SITE_URL}/og-image.jpg`,
+		image: e.image ? new URL(e.image.src, SITE_URL).href : `${SITE_URL}/og-image.jpg`,
 		organizer: { '@id': `${SITE_URL}/#collectif`, '@type': 'PerformingGroup', name: site.nom, url: SITE_URL },
 		...(e.type !== 'atelier' && {
 			performer: {
 				'@type': 'PerformingGroup',
-				// Clownologie et les cabarets sont joués par l'atelier Clown à l'Usine (voir page Collectif).
-				name: e.compagnie ?? (e.type === 'clownologie' || e.type === 'cabaret' ? 'Clown à l’Usine' : site.nom),
+				// Compagnie invitée si précisée, sinon le collectif (Clown à l'usine est devenu Clown, dos, tres).
+				name: e.compagnie ?? site.nom,
 			},
 		}),
 		...(montant && {
