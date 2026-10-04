@@ -12,5 +12,7 @@ export const site = {
 		nom: 'Pancho',
 		// Redirection OVH vers la boîte de Pancho : ne pas afficher son adresse ni son téléphone.
 		email: 'contact@clowndostres.com',
+		// Participer aux Mercredis du Clown, proposer un numéro, déposer un projet.
+		programmation: 'programmation@clowndostres.com',
 	},
 };

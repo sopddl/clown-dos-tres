@@ -2,15 +2,33 @@
 import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
 import { site } from '../data/site';
-import portrait from '../assets/photos/9bfebea5-83a1-4723-8135-d1fccf9fdb10-1.jpg';
+import portrait from '../assets/posters/clown-usine-6-nov-2025-rouge.jpg';
 import clownologie from '../assets/posters/clownologie.jpg';
-import cabaret from '../assets/posters/cabaret-clown-usine-1.jpg';
+import cabaretMigractions from '../assets/posters/cabaret-clown-usine-1.jpg';
+import usineNoir from '../assets/posters/clown-usine-6-nov-2025-noir.jpg';
+import usine19Mai from '../assets/posters/clown-usine-19-mai-2026.jpg';
+import cabaret21Mai from '../assets/posters/cabaret-clown-21-mai-2026.jpg';
+import usinePeniche from '../assets/posters/clown-usine-peniche.jpg';
+import kBarreAvril from '../assets/posters/cabaret-k-barre-avril.jpg';
+import kBarreSeptembre from '../assets/posters/cabaret-k-barre-septembre.jpg';
 import salut from '../assets/photos/salut-troupe.jpg';
 import duo from '../assets/photos/duo-paravent.jpg';
 import trench from '../assets/photos/clown-trench.jpg';
 import drape1 from '../assets/photos/clown-drape-1.jpg';
 import drape2 from '../assets/photos/clown-drape-2.jpg';
 import marie from '../assets/photos/marie-cafe-de-paris.jpg';
+
+// Affiches envoyées par Pancho (2026-10-03), à peu près dans l'ordre chronologique.
+const affiches = [
+	{ src: cabaretMigractions, alt: 'Affiche Cabaret Clown « Clown à l’usine ! », festival MigrActions, 2 juillet 2025' },
+	{ src: usineNoir, alt: 'Affiche Clown à l’usine, cabaret clown du 6 novembre 2025 à la Péniche Grande Fantaisie' },
+	{ src: kBarreAvril, alt: 'Affiche Cabaret K barré et autres rébus hilarants, au Café de Paris, en avril' },
+	{ src: usine19Mai, alt: 'Affiche Clown à l’usine, cabaret clown du 19 mai 2026 à la Péniche Grande Fantaisie' },
+	{ src: cabaret21Mai, alt: 'Affiche Cabaret Clown à l’usine du 21 mai 2026 à la Péniche Grande Fantaisie' },
+	{ src: clownologie, alt: 'Affiche Clownologie, spectacle cabaret du collectif Clown à l’usine, juin 2026' },
+	{ src: kBarreSeptembre, alt: 'Affiche Cabaret K barré et autres rébus hilarants, au Café de Paris, 26 septembre' },
+	{ src: usinePeniche, alt: 'Affiche Clown à l’usine, cabaret clown à la Péniche Grande Fantaisie, deux clowns au nez rouge' },
+];
 
 const enImages = [
 	{ src: salut, alt: 'Salut final de la troupe de clowns sur la scène de la Péniche Grande Fantaisie' },
@@ -29,20 +47,31 @@ const enImages = [
 	<section class="section intro">
 		<div class="wrap intro-grid">
 			<div class="portrait">
-				<Image src={portrait} alt="François Durègne en clown, sur scène" />
+				<Image src={portrait} alt="Affiche Clown à l’usine : tapette à mouches et clé à molette croisées sur un nez rouge, cabaret clown à la Péniche Grande Fantaisie" />
 			</div>
 			<div>
-				<p class="eyebrow">Le Collectif</p>
-				<h1>Clown, dos, tres</h1>
+				<h1>Le collectif Clown, dos, tres</h1>
 				<p>
-					<strong>Clown, dos, tres</strong> réunit des artistes clowns qui animent Les Mercredis
-					du Clown sur la Péniche Grande Fantaisie, à Paris. Parmi eux, <strong>François
-					Durègne</strong>, clown et metteur en scène.
+					En mars 2024 naît l’atelier hebdomadaire de l’usine Chapal à Montreuil, un atelier de
+					recherche et de création autour du clown contemporain, sous l’impulsion de <strong
+						>François Durègne</strong
+					>, clown, metteur en scène et pédagogue.
 				</p>
 				<p>
-					Le collectif ouvre régulièrement le plateau à d'autres artistes lors de ses scènes
-					ouvertes, dans un esprit de rencontre et de bienveillance — grands clowns à la
-					renommée internationale ou tout juste fraîchement internationalement reconnus.
+					En juin 2024 se crée un premier spectacle, sous la forme d’un cabaret fait de numéros
+					de clown, du nom de «&nbsp;Clown à l’usine&nbsp;».
+				</p>
+				<p>
+					Après deux années de recherche, de rencontres et de cabarets, François Durègne est
+					invité en résidence sur la péniche Grande Fantaisie en septembre 2026. Le collectif
+					prend le nom de «&nbsp;Clown, dos, tres&nbsp;» et s’y installe avec le projet d’ouvrir un
+					nouvel espace pour le clown dans le 19ᵉ arrondissement.
+				</p>
+				<p>
+					<strong>Le collectif Clown, dos, tres</strong> réunit des artistes clowns venus de
+					divers horizons, dans un esprit tourné vers la recherche et la création collective. Il
+					met particulièrement l’accent sur la dramaturgie du numéro et l’écriture du clown
+					contemporain.
 				</p>
 			</div>
 		</div>
@@ -50,20 +79,14 @@ const enImages = [
 
 	<section class="section section-alt">
 		<div class="wrap">
-			<p class="eyebrow">Sur la même péniche</p>
-			<h2>Cabaret Clown &amp; Clownologie</h2>
-			<p>
-				D'autres rendez-vous clown ponctuent également la programmation de la péniche, portés
-				par l'atelier hebdomadaire Clown à l'Usine (Chapal, Montreuil) — dont François Durègne
-				fait aussi partie.
-			</p>
+			<p class="eyebrow">En affiches</p>
+			<h2>Cabarets &amp; spectacles</h2>
 			<div class="affiches">
-				<div class="affiche-tile">
-					<Image src={cabaret} alt="Affiche Cabaret Clown à l'Usine" />
-				</div>
-				<div class="affiche-tile">
-					<Image src={clownologie} alt="Affiche Clownologie" />
-				</div>
+				{
+					affiches.map((affiche) => (
+						<Image src={affiche.src} alt={affiche.alt} widths={[300, 600]} sizes="(max-width: 760px) 50vw, 280px" />
+					))
+				}
 			</div>
 		</div>
 	</section>
@@ -108,10 +131,11 @@ const enImages = [
 				<p class="eyebrow">Contact</p>
 				<h2>Nous écrire</h2>
 				<p>
-					Pour proposer un numéro, rejoindre une scène ouverte ou toute question sur la
-					programmation, contactez {site.contact.nom} :
+					Pour participer aux Mercredis du Clown, proposer un numéro ou déposer un projet :<br />
+					<a href={`mailto:${site.contact.programmation}`}>{site.contact.programmation}</a>
 				</p>
 				<p>
+					Pour toute autre question :<br />
 					<a href={`mailto:${site.contact.email}`}>{site.contact.email}</a>
 				</p>
 			</div>
@@ -140,24 +164,20 @@ const enImages = [
 		display: block;
 	}
 
+	/* Affiches de formats différents : colonnes, chaque affiche garde son format (ni recadrage ni bandes). */
 	.affiches {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-		gap: 1.5rem;
+		columns: 4 220px;
+		column-gap: 1.25rem;
 		margin-top: 1.5rem;
 	}
 
-	.affiche-tile {
-		aspect-ratio: 3 / 4;
-		overflow: hidden;
-		border-radius: 4px;
-	}
-
-	.affiche-tile :global(img) {
-		width: 100%;
-		height: 100%;
-		object-fit: cover;
+	.affiches :global(img) {
 		display: block;
+		width: 100%;
+		height: auto;
+		margin-bottom: 1.25rem;
+		break-inside: avoid;
+		border-radius: 4px;
 	}
 
 	.en-images {

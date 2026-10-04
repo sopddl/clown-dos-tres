@@ -16,7 +16,6 @@ const current = Astro.url.pathname;
 	<div class="wrap bar">
 		<a href="/" class="logo">
 			<span class="logo-nom">{site.nom}</span>
-			<span class="logo-sous">{site.accroche}</span>
 		</a>
 		<nav aria-label="Navigation principale">
 			<ul>
@@ -63,13 +62,6 @@ const current = Astro.url.pathname;
 		font-size: 1.6rem;
 		letter-spacing: 0.04em;
 		text-transform: uppercase;
-	}
-
-	.logo-sous {
-		font-size: 0.75rem;
-		font-family: 'Libre Baskerville', serif;
-		font-style: italic;
-		color: var(--or);
 	}
 
 	nav ul {
