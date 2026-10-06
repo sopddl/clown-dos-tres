@@ -4,11 +4,13 @@
 import type { ImageMetadata } from 'astro';
 import salsaPiquante from '../assets/agenda/salsa-piquante.jpg';
 import clownologieNovembre from '../assets/agenda/clownologie-11-nov-2026.jpg';
+import shakerTroupe from '../assets/agenda/shaker-troupe.jpg';
 
 export type Evenement = {
 	date: string; // format libre affiché tel quel, ex. "Mercredi 14 octobre 2026"
 	jour: string; // même date au format AAAA-MM-JJ, lu par Google (données structurées)
 	debut?: string; // heure de début au format HH:MM, lue par Google
+	fin?: string; // heure de fin au format HH:MM, lue par Google
 	heure?: string;
 	titre: string;
 	description?: string;
@@ -18,6 +20,7 @@ export type Evenement = {
 	lien?: string;
 	compagnie?: string; // troupe invitée, affichée « Par … » et lue par Google
 	image?: ImageMetadata; // affiche ou visuel, affiché en tête de la carte (fichier dans src/assets/agenda/)
+	imageAlt?: string; // description du visuel (par défaut « Affiche : titre »)
 };
 
 export const evenements: Evenement[] = [
@@ -25,6 +28,7 @@ export const evenements: Evenement[] = [
 		date: 'Mercredi 30 septembre 2026',
 		jour: '2026-09-30',
 		debut: '19:00',
+		fin: '21:00',
 		heure: 'De 19h à 21h',
 		titre: 'Salsa piquante à la péniche Grande Fantaisie',
 		description:
@@ -62,7 +66,9 @@ export const evenements: Evenement[] = [
 		jour: '2026-11-18',
 		titre: 'Shaker',
 		description:
-			'Un condensé des pièces de Shakespeare servi sous forme de « cocktails shakespeariens ». Vous prendrez bien un zest de Shakespeare ?',
+			'Soif de Shakespeare\u00a0? Deux acteurs et deux actrices sont là pour vous servir un cocktail condensé de pièces : tragédie, comédie, pièce historique et romance, choisies ensemble, avec le public, au début de chaque représentation. À siroter dans la fête, avec la révérence et l’irrévérence que l’on doit au vieux Barde. Venez et revenez découvrir et redécouvrir Shakespeare. Et en plus, c’est drôle\u00a0!',
+		image: shakerTroupe,
+		imageAlt: 'La troupe de Shaker en costumes de scène, réunie pour une photo souvenir',
 		compagnie: 'Compagnie Les chants égarés',
 		lieu: 'Péniche Grande Fantaisie',
 		type: 'spectacle',

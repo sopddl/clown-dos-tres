@@ -3,13 +3,18 @@ import { site } from '../data/site';
 const annee = new Date().getFullYear();
 ---
 
-<footer class="site-footer">
+<footer class="site-footer" id="contact">
 	<div class="wrap foot-grid">
 		<div>
 			<p class="eyebrow">Nous trouver</p>
 			<p>
 				{site.peniche.nom}<br />
 				<a href={site.peniche.mapsUrl} target="_blank" rel="noopener">{site.peniche.adresse}</a>
+			</p>
+			<p>
+				Contact péniche : {site.peniche.contactNom}{' '}
+				<a href={`tel:+33${site.peniche.contactTelephone.replace(/\s/g, '').slice(1)}`}>{site.peniche.contactTelephone}</a><br />
+				<a href={site.peniche.privatiserUrl} target="_blank" rel="noopener">Privatiser la péniche (Privateaser)</a>
 			</p>
 		</div>
 		<div>

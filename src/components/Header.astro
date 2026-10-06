@@ -7,6 +7,8 @@ const nav = [
 	{ href: '/scene-ouverte', label: 'Scène Ouverte' },
 	{ href: '/galerie', label: 'Galerie' },
 	{ href: '/collectif', label: 'Le Collectif' },
+	// Ancre vers le pied de page (présent sur toutes les pages).
+	{ href: '#contact', label: 'Nous contacter' },
 ];
 
 const current = Astro.url.pathname;
@@ -55,6 +57,7 @@ const current = Astro.url.pathname;
 		color: var(--creme-clair);
 		display: flex;
 		flex-direction: column;
+		align-items: center;
 		line-height: 1.1;
 	}
 

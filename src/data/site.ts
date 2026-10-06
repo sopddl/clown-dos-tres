@@ -6,6 +6,9 @@ export const site = {
 	peniche: {
 		nom: 'Péniche Grande Fantaisie',
 		adresse: '3 quai de l’Oise, 75019 Paris',
+		contactNom: 'Nordine',
+		contactTelephone: '06 18 95 02 62',
+		privatiserUrl: 'https://www.privateaser.com/lieu/47691-grande-fantaisie',
 		mapsUrl: 'https://maps.google.com/?q=Péniche+Grande+Fantaisie,+3+quai+de+l%27Oise,+75019+Paris',
 	},
 	contact: {
