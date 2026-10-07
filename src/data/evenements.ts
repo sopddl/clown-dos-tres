@@ -5,6 +5,7 @@ import type { ImageMetadata } from 'astro';
 import salsaPiquante from '../assets/agenda/salsa-piquante.jpg';
 import clownologieNovembre from '../assets/agenda/clownologie-11-nov-2026.jpg';
 import shakerTroupe from '../assets/agenda/shaker-troupe.jpg';
+import sceneOuverteOctobre from '../assets/agenda/scene-ouverte-14-oct-2026.jpg';
 
 export type Evenement = {
 	date: string; // format libre affiché tel quel, ex. "Mercredi 14 octobre 2026"
@@ -48,6 +49,7 @@ export const evenements: Evenement[] = [
 		lieu: 'Péniche Grande Fantaisie, 3 quai de l’Oise, 75019 Paris',
 		prix: '8 €',
 		type: 'scene-ouverte',
+		image: sceneOuverteOctobre,
 	},
 	{
 		date: 'Mercredi 11 novembre 2026',
