@@ -1,0 +1,89 @@
+---
+import { Image } from 'astro:assets';
+import Layout from '../layouts/Layout.astro';
+import { actualites } from '../data/actualites';
+
+const actus = [...actualites].sort((a, b) => b.jour.localeCompare(a.jour));
+---
+
+<Layout
+	title="Actualités"
+	fullTitle="Actualités du collectif Clown, dos, tres · Presse et interviews"
+	description="Actualités du collectif Clown, dos, tres et des Mercredis du Clown : interviews, presse, annonces. Péniche Grande Fantaisie, Paris 19e."
+>
+	<section class="section">
+		<div class="wrap">
+			<p class="eyebrow">Actualités</p>
+			<h1>Ça se passe chez les clowns</h1>
+			<div class="actus">
+				{
+					actus.map((actu) => (
+						<article class="actu">
+							{actu.image && (
+								<Image
+									src={actu.image}
+									alt={actu.imageAlt ?? actu.titre}
+									class="visuel"
+									widths={[400, 800]}
+									sizes="(max-width: 760px) 100vw, 380px"
+								/>
+							)}
+							<div>
+								<p class="meta">
+									<time datetime={actu.jour}>{actu.date}</time>
+									{actu.source && <span> · {actu.source}</span>}
+								</p>
+								<h2>{actu.titre}</h2>
+								<p>{actu.texte}</p>
+								{actu.lien && (
+									<a class="btn" href={actu.lien} target="_blank" rel="noopener">
+										{actu.lienLabel ?? 'En savoir plus'}
+									</a>
+								)}
+							</div>
+						</article>
+					))
+				}
+			</div>
+		</div>
+	</section>
+</Layout>
+
+<style>
+	.actus {
+		display: grid;
+		gap: 2.5rem;
+		margin-top: 2rem;
+	}
+
+	.actu {
+		display: grid;
+		grid-template-columns: 380px 1fr;
+		gap: 2rem;
+		align-items: start;
+	}
+
+	.visuel {
+		display: block;
+		width: 100%;
+		height: auto;
+		border-radius: 4px;
+	}
+
+	.meta {
+		margin: 0;
+		font-size: 0.9rem;
+		color: var(--rouge-vif);
+		font-style: italic;
+	}
+
+	h2 {
+		margin: 0.3em 0 0.5em;
+	}
+
+	@media (max-width: 760px) {
+		.actu {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>

@@ -5,8 +5,10 @@ const nav = [
 	{ href: '/', label: 'Accueil' },
 	{ href: '/agenda', label: 'Agenda' },
 	{ href: '/scene-ouverte', label: 'Scène Ouverte' },
+	{ href: '/actualites', label: 'Actus' },
+	{ href: '/appels', label: 'Appels' },
 	{ href: '/galerie', label: 'Galerie' },
-	{ href: '/collectif', label: 'Le Collectif' },
+	{ href: '/collectif', label: 'Collectif' },
 	// Ancre vers le pied de page (présent sur toutes les pages).
 	{ href: '#contact', label: 'Contact' },
 ];
@@ -79,7 +81,7 @@ const current = Astro.url.pathname;
 		list-style: none;
 		display: flex;
 		flex-wrap: wrap;
-		gap: 1.4rem;
+		gap: 0.5rem 1.4rem;
 		margin: 0;
 		padding: 0;
 	}
@@ -98,5 +100,16 @@ const current = Astro.url.pathname;
 	nav a:hover,
 	nav a[aria-current='page'] {
 		border-color: var(--or);
+	}
+
+	/* 8 onglets : on resserre sur mobile pour limiter le retour à la ligne. */
+	@media (max-width: 600px) {
+		nav ul {
+			gap: 0.4rem 0.9rem;
+		}
+
+		nav a {
+			font-size: 0.9rem;
+		}
 	}
 </style>

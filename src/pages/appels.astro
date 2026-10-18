@@ -1,0 +1,296 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { appels, misAJour, zone } from '../data/appels';
+
+const dateFr = (iso: string) =>
+	new Date(`${iso}T12:00:00`).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' });
+
+const zones = [
+	{ id: 'tous', label: 'Partout' },
+	{ id: 'paris', label: 'Paris & Île-de-France' },
+	{ id: 'france', label: 'Reste de la France' },
+	{ id: 'europe', label: 'Europe' },
+];
+const statuts = [
+	{ id: 'tous', label: 'Tous' },
+	{ id: 'ouvert', label: 'Ouverts' },
+	{ id: 'récurrent/à venir', label: 'Récurrents / à venir' },
+];
+const nbOuverts = appels.filter((a) => a.statut === 'ouvert').length;
+---
+
+<Layout
+	title="Appels à numéros"
+	fullTitle="Appels à candidature clown · Scènes ouvertes et festivals"
+	description="Appels à candidature pour numéros de clown en France et en Europe : scènes ouvertes, cabarets, tremplins et festivals. Dates limites, critères, rémunération, contacts."
+>
+	<section class="section">
+		<div class="wrap">
+			<p class="eyebrow">Pour les artistes</p>
+			<h1>Appels à numéros de clown</h1>
+			<p>
+				Scènes ouvertes, cabarets, tremplins et festivals qui cherchent des numéros de clown, en
+				France et dans les grandes villes d’Europe. {nbOuverts} appel{nbOuverts > 1 ? 's' : ''} ouvert{
+					nbOuverts > 1 ? 's' : ''
+				} en ce moment ; les autres reviennent chaque saison.
+			</p>
+			<p class="maj">
+				Vérifié le {dateFr(misAJour)}. Les dates bougent : confirmez toujours sur le lien de
+				l’appel avant d’envoyer.
+				<a href="/appels.csv" download="appels-clown.csv">Télécharger le tableau (Excel / CSV)</a>
+			</p>
+
+			<div class="filtres" role="group" aria-label="Filtrer les appels">
+				<div>
+					{
+						zones.map((z, i) => (
+							<button type="button" data-filtre="zone" data-valeur={z.id} aria-pressed={i === 0 ? 'true' : 'false'}>
+								{z.label}
+							</button>
+						))
+					}
+				</div>
+				<div>
+					{
+						statuts.map((s, i) => (
+							<button type="button" data-filtre="statut" data-valeur={s.id} aria-pressed={i === 0 ? 'true' : 'false'}>
+								{s.label}
+							</button>
+						))
+					}
+				</div>
+			</div>
+
+			<div class="appels">
+				{
+					appels.map((a) => (
+						<article class="appel" data-zone={zone(a)} data-statut={a.statut}>
+							<p class="echeance">
+								{a.statut === 'ouvert' ? (
+									<span class="badge ouvert">Ouvert</span>
+								) : (
+									<span class="badge">Récurrent</span>
+								)}
+								{a.date_limite && a.date_limite >= misAJour ? (
+									<span>
+										Date limite : <strong>{dateFr(a.date_limite)}</strong>
+									</span>
+								) : a.date_limite ? (
+									<span>Dernier appel clos le {dateFr(a.date_limite)}</span>
+								) : (
+									<span>Date limite à confirmer</span>
+								)}
+							</p>
+							<h2>
+								{a.nom}
+								{a.edition && <span class="edition"> · {a.edition}</span>}
+							</h2>
+							<p class="ou">
+								{a.type} · {a.ville}
+								{a.pays !== 'France' && `, ${a.pays}`}
+								{a.lieu && ` · ${a.lieu}`}
+							</p>
+							<dl>
+								{a.dates_evenement && (
+									<>
+										<dt>Dates</dt>
+										<dd>{a.dates_evenement}</dd>
+									</>
+								)}
+								{a.recurrence && (
+									<>
+										<dt>Récurrence</dt>
+										<dd>{a.recurrence}</dd>
+									</>
+								)}
+								{a.duree_numero && (
+									<>
+										<dt>Numéro</dt>
+										<dd>{a.duree_numero}</dd>
+									</>
+								)}
+								{a.criteres && (
+									<>
+										<dt>Critères</dt>
+										<dd>{a.criteres}</dd>
+									</>
+								)}
+								{a.remuneration && (
+									<>
+										<dt>Rémunération</dt>
+										<dd>{a.remuneration}</dd>
+									</>
+								)}
+								{a.frais_inscription && (
+									<>
+										<dt>Inscription</dt>
+										<dd>{a.frais_inscription}</dd>
+									</>
+								)}
+								{a.contact && (
+									<>
+										<dt>Contact</dt>
+										<dd>{a.contact}</dd>
+									</>
+								)}
+								{a.notes && (
+									<>
+										<dt>À savoir</dt>
+										<dd>{a.notes}</dd>
+									</>
+								)}
+							</dl>
+							<a class="lien" href={a.lien} target="_blank" rel="noopener">
+								Voir l’appel ↗
+							</a>
+						</article>
+					))
+				}
+			</div>
+			<p class="vide" hidden>Aucun appel pour ces filtres.</p>
+		</div>
+	</section>
+</Layout>
+
+<script>
+	const filtres = { zone: 'tous', statut: 'tous' };
+	const cartes = document.querySelectorAll<HTMLElement>('.appel');
+	const vide = document.querySelector<HTMLElement>('.vide');
+
+	document.querySelectorAll<HTMLButtonElement>('[data-filtre]').forEach((bouton) => {
+		bouton.addEventListener('click', () => {
+			const cle = bouton.dataset.filtre as keyof typeof filtres;
+			filtres[cle] = bouton.dataset.valeur ?? 'tous';
+			document
+				.querySelectorAll<HTMLButtonElement>(`[data-filtre="${cle}"]`)
+				.forEach((b) => b.setAttribute('aria-pressed', String(b === bouton)));
+			let visibles = 0;
+			cartes.forEach((carte) => {
+				const ok =
+					(filtres.zone === 'tous' || carte.dataset.zone === filtres.zone) &&
+					(filtres.statut === 'tous' || carte.dataset.statut === filtres.statut);
+				carte.hidden = !ok;
+				if (ok) visibles++;
+			});
+			if (vide) vide.hidden = visibles > 0;
+		});
+	});
+</script>
+
+<style>
+	.maj {
+		font-size: 0.9rem;
+		opacity: 0.85;
+	}
+
+	.maj a {
+		display: inline-block;
+		margin-left: 0.3em;
+		font-weight: 700;
+	}
+
+	.filtres {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.8rem 2rem;
+		margin: 1.5rem 0;
+	}
+
+	.filtres div {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.4rem;
+	}
+
+	.filtres button {
+		font: inherit;
+		font-size: 0.85rem;
+		padding: 0.35em 0.9em;
+		border-radius: 999px;
+		border: 1px solid var(--rouge);
+		background: transparent;
+		color: var(--rouge);
+		cursor: pointer;
+	}
+
+	.filtres button[aria-pressed='true'] {
+		background: var(--rouge);
+		color: var(--creme-clair);
+	}
+
+	.appels {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+		gap: 1.25rem;
+	}
+
+	.appel {
+		background: var(--creme-clair);
+		border: 1px solid var(--ombre);
+		border-left: 5px solid var(--or);
+		border-radius: 4px;
+		padding: 1.25rem 1.4rem;
+		display: flex;
+		flex-direction: column;
+	}
+
+	.appel[data-statut='ouvert'] {
+		border-left-color: var(--rouge);
+	}
+
+	.appel[hidden] {
+		display: none;
+	}
+
+	.echeance {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 0.5rem;
+		margin: 0;
+		font-size: 0.9rem;
+	}
+
+	.badge.ouvert {
+		background: var(--rouge);
+		color: var(--creme-clair);
+	}
+
+	h2 {
+		font-size: 1.25rem;
+		margin: 0.6em 0 0.2em;
+	}
+
+	.edition {
+		font-size: 0.8em;
+		opacity: 0.7;
+	}
+
+	.ou {
+		margin: 0 0 0.6em;
+		font-style: italic;
+		font-size: 0.92rem;
+	}
+
+	dl {
+		display: grid;
+		grid-template-columns: auto 1fr;
+		gap: 0.3rem 0.8rem;
+		margin: 0 0 0.8rem;
+		font-size: 0.9rem;
+	}
+
+	dt {
+		font-weight: 700;
+	}
+
+	dd {
+		margin: 0;
+		overflow-wrap: anywhere;
+	}
+
+	.lien {
+		margin-top: auto;
+		font-weight: 700;
+	}
+</style>
