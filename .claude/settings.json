@@ -1,0 +1,11 @@
+{
+  "model": "sonnet",
+  "permissions": {
+    "allow": [
+      "Bash(npx astro build*)",
+      "Bash(npx astro dev *)",
+      "Bash(gh run *)",
+      "Bash(git pull*)"
+    ]
+  }
+}
