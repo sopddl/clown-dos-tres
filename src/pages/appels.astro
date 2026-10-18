@@ -52,26 +52,6 @@ const proches = appels.filter(
 				<a href="/appels.csv" download="appels-clown.csv">Télécharger le tableau (Excel / CSV)</a>
 			</p>
 
-			{
-				proches.length > 0 && (
-					<aside class="proches" aria-labelledby="titre-proches">
-						<h2 id="titre-proches">Dates limites proches</h2>
-						<ol>
-							{proches.map((a) => (
-								<li data-limite={a.date_limite}>
-									<span class={`compte ${joursRestants(a.date_limite!) <= URGENT ? 'urgent' : ''}`}>
-										J-{joursRestants(a.date_limite!)}
-									</span>
-									<span class="quand">{dateFr(a.date_limite!)}</span>
-									<a href={`#${ancre(a)}`}>{a.nom}</a>
-									<span class="ville">{a.ville}{a.pays !== 'France' && `, ${a.pays}`}</span>
-								</li>
-							))}
-						</ol>
-					</aside>
-				)
-			}
-
 			<div class="filtres" role="group" aria-label="Filtrer les appels">
 				<div>
 					{
@@ -92,6 +72,26 @@ const proches = appels.filter(
 					}
 				</div>
 			</div>
+
+			{
+				proches.length > 0 && (
+					<aside class="proches" aria-labelledby="titre-proches">
+						<h2 id="titre-proches">Dates limites proches</h2>
+						<ol>
+							{proches.map((a) => (
+								<li data-limite={a.date_limite} data-zone={zone(a)} data-statut={a.statut}>
+									<span class={`compte ${joursRestants(a.date_limite!) <= URGENT ? 'urgent' : ''}`}>
+										J-{joursRestants(a.date_limite!)}
+									</span>
+									<span class="quand">{dateFr(a.date_limite!)}</span>
+									<a href={`#${ancre(a)}`}>{a.nom}</a>
+									<span class="ville">{a.ville}{a.pays !== 'France' && `, ${a.pays}`}</span>
+								</li>
+							))}
+						</ol>
+					</aside>
+				)
+			}
 
 			<div class="appels">
 				{
@@ -198,7 +198,7 @@ const proches = appels.filter(
 		const jours = Math.round((Date.parse(`${el.dataset.limite}T12:00:00`) - aujourdhui.getTime()) / 86_400_000);
 		const compte = el.matches('.compte') ? el : el.querySelector<HTMLElement>('.compte');
 		if (jours < 0) {
-			if (el.tagName === 'LI') el.hidden = true;
+			if (el.tagName === 'LI') el.dataset.passe = 'oui';
 			else if (compte) compte.textContent = 'clos';
 			return;
 		}
@@ -210,7 +210,25 @@ const proches = appels.filter(
 
 	const filtres = { zone: 'tous', statut: 'tous' };
 	const cartes = document.querySelectorAll<HTMLElement>('.appel');
+	const lignesProches = document.querySelectorAll<HTMLElement>('.proches li');
+	const encadre = document.querySelector<HTMLElement>('.proches');
 	const vide = document.querySelector<HTMLElement>('.vide');
+
+	const correspond = (el: HTMLElement) =>
+		(filtres.zone === 'tous' || el.dataset.zone === filtres.zone) &&
+		(filtres.statut === 'tous' || el.dataset.statut === filtres.statut);
+
+	// L'encadré « Dates limites proches » suit les mêmes filtres que les fiches.
+	function majEncadre() {
+		let lignes = 0;
+		lignesProches.forEach((li) => {
+			const ok = li.dataset.passe !== 'oui' && correspond(li);
+			li.hidden = !ok;
+			if (ok) lignes++;
+		});
+		if (encadre) encadre.hidden = lignes === 0;
+	}
+	majEncadre();
 
 	document.querySelectorAll<HTMLButtonElement>('[data-filtre]').forEach((bouton) => {
 		bouton.addEventListener('click', () => {
@@ -221,13 +239,12 @@ const proches = appels.filter(
 				.forEach((b) => b.setAttribute('aria-pressed', String(b === bouton)));
 			let visibles = 0;
 			cartes.forEach((carte) => {
-				const ok =
-					(filtres.zone === 'tous' || carte.dataset.zone === filtres.zone) &&
-					(filtres.statut === 'tous' || carte.dataset.statut === filtres.statut);
+				const ok = correspond(carte);
 				carte.hidden = !ok;
 				if (ok) visibles++;
 			});
 			if (vide) vide.hidden = visibles > 0;
+			majEncadre();
 		});
 	});
 </script>
@@ -249,7 +266,7 @@ const proches = appels.filter(
 		color: var(--creme-clair);
 		border-radius: 4px;
 		padding: 1.2rem 1.5rem;
-		margin: 1.5rem 0 0.5rem;
+		margin: 0 0 1.5rem;
 	}
 
 	.proches h2 {
@@ -273,7 +290,8 @@ const proches = appels.filter(
 		align-items: baseline;
 	}
 
-	.proches li[hidden] {
+	.proches li[hidden],
+	.proches[hidden] {
 		display: none;
 	}
 
