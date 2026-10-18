@@ -17,6 +17,18 @@ const statuts = [
 	{ id: 'récurrent/à venir', label: 'Récurrents / à venir' },
 ];
 const nbOuverts = appels.filter((a) => a.statut === 'ouvert').length;
+
+// Jours restants avant une date limite (calculés à la construction ; le script de la page
+// les recalcule dans le navigateur pour rester justes entre deux mises à jour).
+const joursRestants = (iso: string) =>
+	Math.round((Date.parse(`${iso}T12:00:00`) - Date.parse(`${misAJour}T12:00:00`)) / 86_400_000);
+const URGENT = 14; // jours : compte à rebours en rouge
+const PROCHE = 60; // jours : affiché dans l'encadré « Dates limites proches »
+const ancre = (a: (typeof appels)[number]) =>
+	'appel-' + a.nom.toLowerCase().normalize('NFD').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+const proches = appels.filter(
+	(a) => a.date_limite && joursRestants(a.date_limite) >= 0 && joursRestants(a.date_limite) <= PROCHE,
+);
 ---
 
 <Layout
@@ -39,6 +51,26 @@ const nbOuverts = appels.filter((a) => a.statut === 'ouvert').length;
 				l’appel avant d’envoyer.
 				<a href="/appels.csv" download="appels-clown.csv">Télécharger le tableau (Excel / CSV)</a>
 			</p>
+
+			{
+				proches.length > 0 && (
+					<aside class="proches" aria-labelledby="titre-proches">
+						<h2 id="titre-proches">Dates limites proches</h2>
+						<ol>
+							{proches.map((a) => (
+								<li data-limite={a.date_limite}>
+									<span class={`compte ${joursRestants(a.date_limite!) <= URGENT ? 'urgent' : ''}`}>
+										J-{joursRestants(a.date_limite!)}
+									</span>
+									<span class="quand">{dateFr(a.date_limite!)}</span>
+									<a href={`#${ancre(a)}`}>{a.nom}</a>
+									<span class="ville">{a.ville}{a.pays !== 'France' && `, ${a.pays}`}</span>
+								</li>
+							))}
+						</ol>
+					</aside>
+				)
+			}
 
 			<div class="filtres" role="group" aria-label="Filtrer les appels">
 				<div>
@@ -64,7 +96,7 @@ const nbOuverts = appels.filter((a) => a.statut === 'ouvert').length;
 			<div class="appels">
 				{
 					appels.map((a) => (
-						<article class="appel" data-zone={zone(a)} data-statut={a.statut}>
+						<article class="appel" id={ancre(a)} data-zone={zone(a)} data-statut={a.statut}>
 							<p class="echeance">
 								{a.statut === 'ouvert' ? (
 									<span class="badge ouvert">Ouvert</span>
@@ -73,7 +105,13 @@ const nbOuverts = appels.filter((a) => a.statut === 'ouvert').length;
 								)}
 								{a.date_limite && a.date_limite >= misAJour ? (
 									<span>
-										Date limite : <strong>{dateFr(a.date_limite)}</strong>
+										Date limite : <strong>{dateFr(a.date_limite)}</strong>{' '}
+										<span
+											class={`compte ${joursRestants(a.date_limite) <= URGENT ? 'urgent' : ''}`}
+											data-limite={a.date_limite}
+										>
+											J-{joursRestants(a.date_limite)}
+										</span>
 									</span>
 								) : a.date_limite ? (
 									<span>Dernier appel clos le {dateFr(a.date_limite)}</span>
@@ -153,6 +191,23 @@ const nbOuverts = appels.filter((a) => a.statut === 'ouvert').length;
 </Layout>
 
 <script>
+	// Compte à rebours recalculé au jour de la visite.
+	const aujourdhui = new Date();
+	aujourdhui.setHours(12, 0, 0, 0);
+	document.querySelectorAll<HTMLElement>('[data-limite]').forEach((el) => {
+		const jours = Math.round((Date.parse(`${el.dataset.limite}T12:00:00`) - aujourdhui.getTime()) / 86_400_000);
+		const compte = el.matches('.compte') ? el : el.querySelector<HTMLElement>('.compte');
+		if (jours < 0) {
+			if (el.tagName === 'LI') el.hidden = true;
+			else if (compte) compte.textContent = 'clos';
+			return;
+		}
+		if (compte) {
+			compte.textContent = jours === 0 ? 'dernier jour' : `J-${jours}`;
+			compte.classList.toggle('urgent', jours <= 14);
+		}
+	});
+
 	const filtres = { zone: 'tous', statut: 'tous' };
 	const cartes = document.querySelectorAll<HTMLElement>('.appel');
 	const vide = document.querySelector<HTMLElement>('.vide');
@@ -187,6 +242,93 @@ const nbOuverts = appels.filter((a) => a.statut === 'ouvert').length;
 		display: inline-block;
 		margin-left: 0.3em;
 		font-weight: 700;
+	}
+
+	.proches {
+		background: var(--rouge);
+		color: var(--creme-clair);
+		border-radius: 4px;
+		padding: 1.2rem 1.5rem;
+		margin: 1.5rem 0 0.5rem;
+	}
+
+	.proches h2 {
+		color: var(--or);
+		font-size: 1.3rem;
+		margin: 0 0 0.6rem;
+	}
+
+	.proches ol {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: grid;
+		gap: 0.45rem;
+	}
+
+	.proches li {
+		display: grid;
+		grid-template-columns: 5.5rem 9.5rem 1fr auto;
+		gap: 0.8rem;
+		align-items: baseline;
+	}
+
+	.proches li[hidden] {
+		display: none;
+	}
+
+	.proches a {
+		color: var(--creme-clair);
+		font-weight: 700;
+	}
+
+	.proches .ville {
+		font-style: italic;
+		opacity: 0.85;
+		font-size: 0.9rem;
+	}
+
+	.proches .quand {
+		font-size: 0.9rem;
+	}
+
+	.compte {
+		display: inline-block;
+		font-family: 'Bebas Neue', sans-serif;
+		letter-spacing: 0.05em;
+		font-size: 0.95rem;
+		padding: 0.05em 0.6em;
+		border-radius: 999px;
+		background: var(--or);
+		color: var(--encre);
+		text-align: center;
+	}
+
+	.compte.urgent {
+		background: var(--rouge-vif);
+		color: var(--creme-clair);
+	}
+
+	.proches .compte.urgent {
+		background: var(--creme-clair);
+		color: var(--rouge-vif);
+	}
+
+	.appel:target {
+		outline: 3px solid var(--or);
+		outline-offset: 2px;
+	}
+
+	@media (max-width: 760px) {
+		.proches li {
+			grid-template-columns: auto 1fr;
+			gap: 0.2rem 0.7rem;
+		}
+
+		.proches li a,
+		.proches li .ville {
+			grid-column: 2;
+		}
 	}
 
 	.filtres {
