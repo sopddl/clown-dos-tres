@@ -1,16 +1,20 @@
 ---
 import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
+import { descriptionsPhotos } from '../data/photos';
 
 // Pour ajouter une photo : déposez le fichier dans src/assets/photos/, il apparaît ici automatiquement.
 const photosModules = import.meta.glob<{ default: ImageMetadata }>('../assets/photos/*.jpg', {
 	eager: true,
 });
-const photos = Object.values(photosModules).map((mod) => mod.default);
+const photos = Object.entries(photosModules).map(([chemin, mod]) => ({
+	...mod.default,
+	alt: descriptionsPhotos[chemin.split('/').pop()!] ?? altParDefaut,
+}));
 // Deux blocs : les paysages puis les portraits, chacun dans des cases à son format (pas de recadrage).
 const paysages = photos.filter((photo) => photo.width >= photo.height);
 const portraits = photos.filter((photo) => photo.width < photo.height);
-const alt = "Photo d'un spectacle du collectif Clown, dos, tres sur la Péniche Grande Fantaisie";
+const altParDefaut = "Photo d'un spectacle du collectif Clown, dos, tres sur la Péniche Grande Fantaisie";
 ---
 
 <Layout
@@ -27,7 +31,7 @@ const alt = "Photo d'un spectacle du collectif Clown, dos, tres sur la Péniche 
 				{
 					paysages.map((photo) => (
 						<div class="tile tile-paysage">
-							<Image src={photo} alt={alt} widths={[400, 800]} sizes="(max-width: 700px) 100vw, 380px" />
+							<Image src={photo} alt={photo.alt} widths={[400, 800]} sizes="(max-width: 700px) 100vw, 380px" />
 						</div>
 					))
 				}
@@ -36,7 +40,7 @@ const alt = "Photo d'un spectacle du collectif Clown, dos, tres sur la Péniche 
 				{
 					portraits.map((photo) => (
 						<div class="tile tile-portrait">
-							<Image src={photo} alt={alt} widths={[320, 640]} sizes="(max-width: 700px) 45vw, 300px" />
+							<Image src={photo} alt={photo.alt} widths={[320, 640]} sizes="(max-width: 700px) 45vw, 300px" />
 						</div>
 					))
 				}

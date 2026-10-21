@@ -22,3 +22,6 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# Fichiers bruts reçus (mails, photos), déjà intégrés au site
+_recus/
