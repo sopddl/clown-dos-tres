@@ -494,32 +494,6 @@
   "notes": "Tremplin humour orienté seul-en-scène ; appel à la fin de l'été."
  },
  {
-  "nom": "Strasbourg Burlesque Festival",
-  "type": "autre",
-  "organisateur": "Strasbourg Burlesque Festival",
-  "ville": "Strasbourg",
-  "region": "Grand Est",
-  "pays": "France",
-  "lieu": null,
-  "date_limite": null,
-  "dates_evenement": "4-6 février 2027",
-  "recurrence": "annuel (février)",
-  "edition": "2027",
-  "statut": "ouvert",
-  "duree_numero": null,
-  "criteres": "Burlesque classique et new burlesque, boylesque, drag, queerlesque, cirque, chant, pole dance ; intentions politiques, satiriques, bizarres ou glamour. Ouvert aux débutants. Le clown n'est pas cité explicitement.",
-  "remuneration": null,
-  "frais_inscription": null,
-  "contact": "contact@strasbourgburlesquefestival.com",
-  "lien": "https://www.strasbourgburlesquefestival.com/formulaireartistes",
-  "sources": [
-   "https://www.strasbourgburlesquefestival.com/",
-   "https://www.strasbourgburlesquefestival.com/formulaireartistes"
-  ],
-  "fiabilite": "moyenne",
-  "notes": "Formulaire artistes en ligne, date de fin non lisible ; la page mentionnait encore 2026 : à vérifier. Univers centré sur l'effeuillage."
- },
- {
   "nom": "Festival Mondial du Cirque de Demain – candidatures 2027",
   "type": "tremplin/concours",
   "organisateur": "Festival Mondial du Cirque de Demain",
@@ -913,7 +887,7 @@
   "pays": "Allemagne",
   "lieu": "ACUD Theater, Veteranenstr. 21, 10119 Berlin-Mitte",
   "date_limite": null,
-  "dates_evenement": "31 octobre 2026 (programme complet), puis 9 janvier 2027 (prochaine date ouverte aux candidatures)",
+  "dates_evenement": "9 janvier 2027 à 20h (prochaine date ouverte aux candidatures ; la soirée du 31 octobre 2026 est complète)",
   "recurrence": "Environ trimestrielle (janvier, avril, juillet, octobre)",
   "edition": null,
   "statut": "ouvert",
@@ -1109,5 +1083,31 @@
   ],
   "fiabilite": "moyenne",
   "notes": "Foire professionnelle avec de nombreux programmateurs. Prochain appel (2028) attendu entre juin et août 2027."
+ },
+ {
+  "nom": "Uzine à Gag – scène ouverte clown",
+  "type": "scène ouverte",
+  "organisateur": "Compagnie L'Embrayage à paillettes (avec TAB – Théâtre & Arts Burlesques)",
+  "ville": "Beaulieu-sur-Mer",
+  "region": "Provence-Alpes-Côte d'Azur",
+  "pays": "France",
+  "lieu": "Jardin de l'Olivaie, rue Jean Bracco, 06310 Beaulieu-sur-Mer",
+  "date_limite": "2026-04-15",
+  "dates_evenement": "Édition 2026 : vendredi 12 juin 2026, 18h-minuit",
+  "recurrence": "annuel (juin)",
+  "edition": null,
+  "statut": "récurrent/à venir",
+  "duree_numero": "3 à 7 min",
+  "criteres": "Scène ouverte de clowns (improvisation, poésie burlesque), amateurs comme professionnels. Numéro techniquement simple, jouable en extérieur. Candidature : courte description du numéro, photo et lien vidéo facultatifs.",
+  "remuneration": "Bénévole (« tremplin bénévole »), pas de rémunération ; entrée libre pour le public",
+  "frais_inscription": null,
+  "contact": "nmasseglia@gmail.com (candidatures scène ouverte) ; cie.embrayage@gmail.com (organisation)",
+  "lien": "https://presseagence.fr/beaulieu-sur-mer-uzine-a-gag-le-festival-de-clown-contemporain-revient-en-acces-libre-le-12-juin/",
+  "sources": [
+   "https://presseagence.fr/beaulieu-sur-mer-uzine-a-gag-le-festival-de-clown-contemporain-revient-en-acces-libre-le-12-juin/",
+   "https://presseagence.fr/?p=941256"
+  ],
+  "fiabilite": "haute",
+  "notes": "Pour 2026, candidatures avant le 15 avril, réponses au plus tard le 30 avril. L'appel 2027 devrait suivre le même calendrier : à surveiller de février à avril 2027."
  }
 ]
