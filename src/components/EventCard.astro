@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import type { Evenement } from '../data/evenements';
+import { site } from '../data/site';
 
 interface Props {
 	evenement: Evenement;
@@ -34,7 +35,7 @@ const labels: Record<Evenement['type'], string> = {
 		{labels[evenement.type]}
 	</span>
 	<h3>{evenement.date}</h3>
-	{evenement.heure && <p class="heure">{evenement.heure}</p>}
+	{evenement.reporte ? <p class="reporte">{evenement.reporte}</p> : evenement.heure && <p class="heure">{evenement.heure}</p>}
 	<p class="titre">{evenement.titre}</p>
 	{evenement.description && <p class="desc">{evenement.description}</p>}
 	{evenement.compagnie && <p class="desc compagnie">Par la {evenement.compagnie}</p>}
@@ -42,6 +43,26 @@ const labels: Record<Evenement['type'], string> = {
 		{evenement.lieu}
 		{evenement.prix && ` · ${evenement.prix}`}
 	</p>
+	{
+		evenement.reservation && !evenement.reporte && (
+			<div class="actions">
+				<a
+					class="btn"
+					href={`mailto:${site.contact.email}?subject=${encodeURIComponent(`Réservation – ${evenement.titre} – ${evenement.date}`)}`}
+				>
+					Réserver
+				</a>
+				{evenement.type === 'scene-ouverte' && (
+					<a
+						class="proposer"
+						href={`mailto:${site.contact.programmation}?subject=${encodeURIComponent(`Proposer un numéro – ${evenement.titre} – ${evenement.date}`)}`}
+					>
+						Proposer un numéro
+					</a>
+				)}
+			</div>
+		)
+	}
 	{
 		evenement.lien && (
 			<a class="btn" href={evenement.lien}>
@@ -92,6 +113,42 @@ const labels: Record<Evenement['type'], string> = {
 	h3 {
 		font-size: 1.1rem;
 		margin: 0.3em 0 0;
+	}
+
+	.reporte {
+		margin: 0;
+		font-weight: 700;
+		color: var(--creme-clair);
+		background: var(--rouge-vif);
+		align-self: flex-start;
+		padding: 0.15em 0.6em;
+		border-radius: 3px;
+	}
+
+	.event-card:has(.reporte) h3,
+	.event-card:has(.reporte) .visuel {
+		opacity: 0.55;
+	}
+
+	.event-card:has(.reporte) h3 {
+		text-decoration: line-through;
+	}
+
+	.actions {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 0.6rem 1rem;
+		margin-top: 0.6rem;
+	}
+
+	.actions .btn {
+		margin-top: 0;
+	}
+
+	.proposer {
+		font-size: 0.9rem;
+		font-weight: 700;
 	}
 
 	.heure {

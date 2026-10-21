@@ -6,6 +6,7 @@ import salsaPiquante from '../assets/agenda/salsa-piquante.jpg';
 import clownologieNovembre from '../assets/agenda/clownologie-11-nov-2026.jpg';
 import shakerTroupe from '../assets/agenda/shaker-troupe.jpg';
 import sceneOuverteOctobre from '../assets/agenda/scene-ouverte-14-oct-2026.jpg';
+import sceneOuverteNovembre from '../assets/agenda/scene-ouverte-25-nov-2026.jpg';
 
 export type Evenement = {
 	date: string; // format libre affiché tel quel, ex. "Mercredi 14 octobre 2026"
@@ -22,6 +23,8 @@ export type Evenement = {
 	compagnie?: string; // troupe invitée, affichée « Par … » et lue par Google
 	image?: ImageMetadata; // affiche ou visuel, affiché en tête de la carte (fichier dans src/assets/agenda/)
 	imageAlt?: string; // description du visuel (par défaut « Affiche : titre »)
+	reservation?: boolean; // affiche un bouton « Réserver » (mail à contact@)
+	reporte?: string; // date reportée/annulée : texte affiché à la place de l'heure, ex. « Reporté en décembre »
 };
 
 export const evenements: Evenement[] = [
@@ -62,6 +65,7 @@ export const evenements: Evenement[] = [
 		prix: '10 €',
 		image: clownologieNovembre,
 		type: 'clownologie',
+		reporte: 'Reporté en décembre — nouvelle date à venir',
 	},
 	{
 		date: 'Mercredi 18 novembre 2026',
@@ -78,8 +82,15 @@ export const evenements: Evenement[] = [
 	{
 		date: 'Mercredi 25 novembre 2026',
 		jour: '2026-11-25',
-		titre: 'Scène Ouverte Clown — 2nde édition',
-		lieu: 'Péniche Grande Fantaisie',
+		debut: '20:00',
+		heure: '20h',
+		titre: 'Scène Ouverte Clown — 2de édition',
+		description:
+			'Une soirée de numéros, une rencontre de clowns\u00a0! Le collectif Clown, dos, tres ouvre de nouveau son plateau aux clowns.',
+		lieu: 'Péniche Grande Fantaisie, 3 quai de l’Oise, 75019 Paris',
+		prix: '8 €',
 		type: 'scene-ouverte',
+		image: sceneOuverteNovembre,
+		reservation: true,
 	},
 ];

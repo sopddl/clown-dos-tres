@@ -2,7 +2,7 @@
 import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
 import { site } from '../data/site';
-import poster from '../assets/posters/scene-ouverte-appel.jpg';
+import poster from '../assets/agenda/scene-ouverte-25-nov-2026.jpg';
 
 const criteres = [
 	'Vos nom / prénom / nom de scène',
@@ -45,7 +45,7 @@ const criteres = [
 				</p>
 			</div>
 			<div class="poster">
-				<Image src={poster} alt="Affiche Scène Ouverte Clown, collectif Clown, dos, tres" />
+				<Image src={poster} alt="Affiche Scène Ouverte Clown, 2de édition, mercredi 25 novembre 2026 à 20h, Péniche Grande Fantaisie" />
 			</div>
 		</div>
 	</section>
@@ -71,7 +71,7 @@ const criteres = [
 			</div>
 			<div>
 				<p class="eyebrow">Pour participer</p>
-				<p>Envoyez-nous un court message avant le <strong>7 octobre</strong>, avec :</p>
+				<p>Prochaine édition : <strong>mercredi 25 novembre 2026 à 20h</strong>. Envoyez-nous un court message avec :</p>
 				<ol class="criteres">
 					{criteres.map((critere) => <li>{critere}</li>)}
 				</ol>

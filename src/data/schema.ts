@@ -86,7 +86,7 @@ export function evenementSchema(e: Evenement) {
 		startDate,
 		...(endDate && { endDate }),
 		description: e.description ?? `${e.titre} — ${site.accroche} sur la ${site.peniche.nom}, Paris 19e.`,
-		eventStatus: 'https://schema.org/EventScheduled',
+		eventStatus: e.reporte ? 'https://schema.org/EventPostponed' : 'https://schema.org/EventScheduled',
 		eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
 		location: lieu,
 		image: e.image ? new URL(e.image.src, SITE_URL).href : `${SITE_URL}/og-image.jpg`,
