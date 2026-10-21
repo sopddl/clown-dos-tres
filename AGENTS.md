@@ -23,7 +23,8 @@ reprendre la dernière session).
 | Coordonnées, péniche | `src/data/site.ts` |
 | Données Google (JSON-LD) | `src/data/schema.ts` |
 | Équipe, affiches, histoire | `src/pages/collectif.astro` (+ `src/assets/equipe/`, `src/assets/posters/`) |
-| Galerie | toute photo `.jpg` déposée dans `src/assets/photos/` y apparaît automatiquement |
+| Galerie | toute photo `.jpg` déposée dans `src/assets/photos/` y apparaît automatiquement ; ajouter sa description dans `src/data/photos.ts` |
+| Fichiers bruts reçus (mails, photos) | `_recus/` (ignoré par git) : y ranger les pièces jointes une fois intégrées |
 
 ## Règles tranchées (ne pas redemander)
 
