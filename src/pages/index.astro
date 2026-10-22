@@ -5,11 +5,16 @@ import EventCard from '../components/EventCard.astro';
 import { site } from '../data/site';
 import { evenements } from '../data/evenements';
 import { evenementSchema } from '../data/schema';
+import { actualites } from '../data/actualites';
 // Recadrage de salle-1.jpg resserré sur le clown qui dort dans le public (hors galerie).
 import hero from '../assets/accueil/fond-salle-clown.jpg';
 import photoGroupe from '../assets/photos/8d5ffa21-dcdf-4aab-a2f1-da88d4f3944c-1.jpg';
 
 const prochains = evenements.slice(0, 3);
+
+// Bandeau « À la une » : actualités mises en avant, jusqu'à leur date de fin.
+const aujourdhui = new Date().toISOString().slice(0, 10);
+const aLaUne = actualites.filter((a) => a.aLaUne && a.aLaUne.jusquAu >= aujourdhui);
 ---
 
 <Layout
@@ -35,6 +40,23 @@ const prochains = evenements.slice(0, 3);
 			</div>
 		</div>
 	</section>
+
+	{
+		aLaUne.length > 0 && (
+			<section class="une" aria-label="À la une">
+				<div class="wrap une-liste">
+					{aLaUne.map((a) => (
+						<a class="une-item" href={`/actualites#${a.id}`} data-jusqu={a.aLaUne!.jusquAu}>
+							<span class="une-label">À la une</span>
+							<span class="une-titre">{a.aLaUne!.titre}</span>
+							<span class="une-quand">{a.aLaUne!.quand}</span>
+							<span class="une-fleche" aria-hidden="true">→</span>
+						</a>
+					))}
+				</div>
+			</section>
+		)
+	}
 
 	<section class="section">
 		<div class="wrap">
@@ -88,7 +110,60 @@ const prochains = evenements.slice(0, 3);
 	</section>
 </Layout>
 
+<script>
+	// Masque une mise en avant dont la date est passée (entre deux reconstructions du site).
+	const jour = new Date().toISOString().slice(0, 10);
+	document.querySelectorAll<HTMLElement>('[data-jusqu]').forEach((el) => {
+		if ((el.dataset.jusqu ?? '') < jour) el.hidden = true;
+	});
+</script>
+
 <style>
+	.une {
+		background: var(--or);
+	}
+
+	.une-liste {
+		display: grid;
+		gap: 0.2rem;
+		padding-block: 0.9rem;
+	}
+
+	.une-item {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: baseline;
+		gap: 0.3rem 0.9rem;
+		color: var(--encre);
+		text-decoration: none;
+	}
+
+	.une-item[hidden] {
+		display: none;
+	}
+
+	.une-label {
+		font-family: 'Bebas Neue', sans-serif;
+		letter-spacing: 0.06em;
+		background: var(--rouge);
+		color: var(--creme-clair);
+		padding: 0.1em 0.6em;
+		border-radius: 2px;
+	}
+
+	.une-titre {
+		font-weight: 700;
+		font-size: 1.1rem;
+	}
+
+	.une-quand {
+		font-style: italic;
+	}
+
+	.une-item:hover .une-titre {
+		text-decoration: underline;
+	}
+
 	.hero {
 		position: relative;
 		min-height: 78vh;

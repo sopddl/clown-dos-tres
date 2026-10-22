@@ -2,14 +2,46 @@
 import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
 import { actualites } from '../data/actualites';
+import { collectif } from '../data/schema';
 
 const actus = [...actualites].sort((a, b) => b.jour.localeCompare(a.jour));
+
+// Données Google : chaque actualité qui annonce un stage/événement devient un « Event ».
+const schema = actus
+	.filter((a) => a.evenement)
+	.map((a) => ({
+		'@type': 'Event',
+		name: a.titre,
+		description: a.texte,
+		startDate: a.evenement!.debut,
+		endDate: a.evenement!.fin,
+		eventStatus: 'https://schema.org/EventScheduled',
+		eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+		location: {
+			'@type': 'Place',
+			name: a.evenement!.lieu,
+			address: {
+				'@type': 'PostalAddress',
+				streetAddress: a.evenement!.adresse,
+				postalCode: a.evenement!.codePostal,
+				addressLocality: a.evenement!.ville,
+				addressCountry: 'FR',
+			},
+		},
+		performer: collectif.member[0],
+		organizer: { '@type': 'Organization', name: a.evenement!.lieu, url: a.lien },
+		...(a.image && { image: new URL(a.image.src, 'https://clowndostres.com').href }),
+		...(a.evenement!.prix && {
+			offers: { '@type': 'Offer', price: a.evenement!.prix, priceCurrency: 'EUR', url: a.lien, availability: 'https://schema.org/InStock' },
+		}),
+	}));
 ---
 
 <Layout
 	title="Actualités"
-	fullTitle="Actualités du collectif Clown, dos, tres · Presse et interviews"
-	description="Actualités du collectif Clown, dos, tres et des Mercredis du Clown : interviews, presse, annonces. Péniche Grande Fantaisie, Paris 19e."
+	fullTitle="Actualités du collectif Clown, dos, tres · Stages, presse, interviews"
+	schema={schema}
+	description="Actualités du collectif Clown, dos, tres : stages de clown avec François Durègne, interviews, presse et annonces des Mercredis du Clown, Paris."
 >
 	<section class="section">
 		<div class="wrap">
@@ -18,7 +50,7 @@ const actus = [...actualites].sort((a, b) => b.jour.localeCompare(a.jour));
 			<div class="actus">
 				{
 					actus.map((actu) => (
-						<article class="actu">
+						<article class="actu" id={actu.id}>
 							{actu.image && (
 								<Image
 									src={actu.image}
