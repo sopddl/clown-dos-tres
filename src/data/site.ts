@@ -11,6 +11,11 @@ export const site = {
 		privatiserUrl: 'https://www.privateaser.com/lieu/47691-grande-fantaisie',
 		mapsUrl: 'https://maps.google.com/?q=Péniche+Grande+Fantaisie,+3+quai+de+l%27Oise,+75019+Paris',
 	},
+	// Scène ouverte : partenaire et crédits (affichés sur la page et l'agenda, déclarés à Google)
+	sceneOuverte: {
+		soutien: 'Al Alma France',
+		photoVideo: 'Alain Ramirez',
+	},
 	contact: {
 		nom: 'Pancho',
 		// Redirection OVH vers la boîte de Pancho : ne pas afficher son adresse ni son téléphone.

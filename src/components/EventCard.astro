@@ -39,6 +39,13 @@ const labels: Record<Evenement['type'], string> = {
 	<p class="titre">{evenement.titre}</p>
 	{evenement.description && <p class="desc">{evenement.description}</p>}
 	{evenement.compagnie && <p class="desc compagnie">Par la {evenement.compagnie}</p>}
+	{
+		evenement.type === 'scene-ouverte' && (
+			<p class="desc credits">
+				Avec le soutien d’{site.sceneOuverte.soutien} · Photo et vidéo : {site.sceneOuverte.photoVideo}
+			</p>
+		)
+	}
 	<p class="infos">
 		{evenement.lieu}
 		{evenement.prix && ` · ${evenement.prix}`}
@@ -96,6 +103,11 @@ const labels: Record<Evenement['type'], string> = {
 
 	.event-card.atelier .badge {
 		background: #f3dc8f;
+	}
+
+	.credits {
+		font-size: 0.85rem;
+		opacity: 0.8;
 	}
 
 	.compagnie {

@@ -2,7 +2,7 @@
 // Image : déposez-la dans src/assets/actus/ et importez-la ci-dessous.
 import type { ImageMetadata } from 'astro';
 import dgnair from '../assets/actus/dgnair-francois-duregne.jpg';
-import stageClownToujours from '../assets/actus/stage-clown-toujours-francois.jpg';
+import cuantosCuentos from '../assets/actus/cuantos-cuentos-cuentas-mexico-2011.jpg';
 
 export type Actualite = {
 	jour: string; // AAAA-MM-JJ, sert au tri et à Google
@@ -14,6 +14,7 @@ export type Actualite = {
 	lienLabel?: string;
 	image?: ImageMetadata;
 	imageAlt?: string;
+	legende?: string; // affichée sous la photo (crédit, contexte)
 	id?: string; // ancre de la carte (#id), utilisée par le bandeau « À la une »
 	aLaUne?: { titre: string; quand: string; jusquAu: string }; // bandeau sur l'accueil jusqu'à la date AAAA-MM-JJ
 	evenement?: {
@@ -36,11 +37,12 @@ export const actualites: Actualite[] = [
 		titre: 'Stage « Clown toujours » avec François Durègne au Théâtre de l’Opprimé',
 		source: 'Théâtre de l’Opprimé, Paris 12e',
 		texte:
-			'Une recherche individuelle et collective du clown, fondée sur la confiance et le plaisir d’être en scène : jeux, exercices scéniques et improvisations, à la découverte de l’âme du clown et de la couleur intime propre à chacun. Deux week-ends, de 9h à 15h (20 heures au total), au 78-80 rue du Charolais. Tarifs : 400 €, 300 € en tarif réduit (étudiants, France Travail), 1 080 € en formation professionnelle. Inscriptions auprès du théâtre : forum@theatredelopprime.com, 01 43 45 81 20.',
+			'Une recherche individuelle et collective du clown, fondée sur la confiance et le plaisir d’être en scène : jeux, exercices scéniques et improvisations, à la découverte de l’âme du clown et de la couleur intime propre à chacun. Deux week-ends, de 9h à 15h (20 heures au total), au 78-80 rue du Charolais. Tarifs : 400 €, 300 € en tarif réduit (étudiants, France Travail), 1 080 € en formation professionnelle (prise en charge AFDAS). Inscriptions auprès du théâtre : forum@theatredelopprime.com, 01 43 45 81 20.',
 		lien: 'https://www.theatredelopprime.com/stages-invites-26-27/clown-toujours',
 		lienLabel: 'Infos et inscription',
-		image: stageClownToujours,
-		imageAlt: 'François Durègne, qui anime le stage Clown toujours',
+		image: cuantosCuentos,
+		imageAlt: 'Une clown au nez rouge et au casque à ressorts, dans « Cuántos Cuentos Cuentas », mis en scène par François Durègne à Mexico en 2011',
+		legende: '« Cuántos Cuentos Cuentas », mise en scène et dramaturgie François Durègne – Mexico, 2011',
 		aLaUne: {
 			titre: 'Stage « Clown toujours » avec François Durègne',
 			quand: '14-15 et 21-22 novembre · Théâtre de l’Opprimé, Paris 12e',

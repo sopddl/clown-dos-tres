@@ -41,6 +41,7 @@ const schema = actus
 	title="Actualités"
 	fullTitle="Actualités du collectif Clown, dos, tres · Stages, presse, interviews"
 	schema={schema}
+	image={actus[0]?.image?.src}
 	description="Actualités du collectif Clown, dos, tres : stages de clown avec François Durègne, interviews, presse et annonces des Mercredis du Clown, Paris."
 >
 	<section class="section">
@@ -52,13 +53,16 @@ const schema = actus
 					actus.map((actu) => (
 						<article class="actu" id={actu.id}>
 							{actu.image && (
-								<Image
-									src={actu.image}
-									alt={actu.imageAlt ?? actu.titre}
-									class="visuel"
-									widths={[400, 800]}
-									sizes="(max-width: 760px) 100vw, 380px"
-								/>
+								<figure>
+									<Image
+										src={actu.image}
+										alt={actu.imageAlt ?? actu.titre}
+										class="visuel"
+										widths={[400, 800]}
+										sizes="(max-width: 760px) 100vw, 380px"
+									/>
+									{actu.legende && <figcaption>{actu.legende}</figcaption>}
+								</figure>
 							)}
 							<div>
 								<p class="meta">
@@ -100,6 +104,17 @@ const schema = actus
 		width: 100%;
 		height: auto;
 		border-radius: 4px;
+	}
+
+	figure {
+		margin: 0;
+	}
+
+	figcaption {
+		margin-top: 0.5rem;
+		font-size: 0.85rem;
+		font-style: italic;
+		opacity: 0.8;
 	}
 
 	.meta {

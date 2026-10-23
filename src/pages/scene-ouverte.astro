@@ -15,6 +15,7 @@ const criteres = [
 
 <Layout
 	title="Scène Ouverte Clown"
+	image={poster.src}
 	fullTitle="Scène ouverte clown à Paris 19e · Clown, dos, tres"
 	description="Scène ouverte clown à Paris 19e : proposez votre numéro sur la Péniche Grande Fantaisie avec le collectif Clown, dos, tres. Conditions et inscription."
 >
@@ -46,6 +47,10 @@ const criteres = [
 			</div>
 			<div class="poster">
 				<Image src={poster} alt="Affiche Scène Ouverte Clown, 2de édition, mercredi 25 novembre 2026 à 20h, Péniche Grande Fantaisie" />
+				<p class="mentions">
+					Avec le soutien d’<strong>{site.sceneOuverte.soutien}</strong><br />
+					Photo et vidéo : <strong>{site.sceneOuverte.photoVideo}</strong>
+				</p>
 			</div>
 		</div>
 	</section>
@@ -96,9 +101,9 @@ const criteres = [
 		font-size: 1.15rem;
 	}
 
-	.poster {
+	/* L'affiche garde son cadre 2/3 ; les mentions s'affichent dessous. */
+	.poster :global(img) {
 		aspect-ratio: 2 / 3;
-		overflow: hidden;
 		border-radius: 4px;
 		box-shadow: 0 12px 30px var(--ombre);
 	}
@@ -142,5 +147,11 @@ const criteres = [
 		.cadre-grid {
 			grid-template-columns: 1fr;
 		}
+	}
+
+	.mentions {
+		margin-top: 0.8rem;
+		font-size: 0.9rem;
+		text-align: center;
 	}
 </style>

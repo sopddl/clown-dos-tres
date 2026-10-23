@@ -98,6 +98,9 @@ export function evenementSchema(e: Evenement) {
 				name: e.compagnie ?? site.nom,
 			},
 		}),
+		...(e.type === 'scene-ouverte' && {
+			sponsor: { '@type': 'Organization', name: site.sceneOuverte.soutien },
+		}),
 		...(montant && {
 			offers: {
 				'@type': 'Offer',
