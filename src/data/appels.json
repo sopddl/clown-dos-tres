@@ -60,11 +60,11 @@
   "region": "Île-de-France",
   "pays": "France",
   "lieu": "Rues, places, squares et lieux du 20e arrondissement",
-  "date_limite": "2026-10-24",
+  "date_limite": null,
   "dates_evenement": "17-20 juin 2027",
   "recurrence": "annuel (juin)",
-  "edition": "18e (2027)",
-  "statut": "ouvert",
+  "edition": "19e (2028, probable)",
+  "statut": "récurrent/à venir",
   "duree_numero": null,
   "criteres": "Spectacles pour l'espace public (arts de la rue). Les critères détaillés sont dans le PDF de l'appel à projets, sur la page candidature.",
   "remuneration": null,
@@ -77,7 +77,7 @@
    "https://www.federationartsdelarueidf.org/appels-a-projets/"
   ],
   "fiabilite": "haute",
-  "notes": "Clôture le 24 octobre 2026 inclus, réponses en janvier 2027. Seul appel ouvert trouvé à Paris même."
+  "notes": "L'appel pour l'édition 2027 (17-20 juin) a clôturé le 24 octobre 2026 ; réponses attendues en janvier 2027. Prochain appel (édition 2028) probablement à l'automne 2027, sur le même rythme annuel (clôture en octobre)."
  },
  {
   "nom": "Chalon dans la rue – Sélection Off",
@@ -192,11 +192,11 @@
   "region": "Nouvelle-Aquitaine",
   "pays": "France",
   "lieu": "Places et jardins de la ville",
-  "date_limite": null,
-  "dates_evenement": "Chaque été (dates 2027 non publiées)",
+  "date_limite": "2027-01-10",
+  "dates_evenement": "7-10 juillet 2027",
   "recurrence": "annuel",
   "edition": "2027",
-  "statut": "récurrent/à venir",
+  "statut": "ouvert",
   "duree_numero": null,
   "criteres": "Compagnies des arts du geste (mime, geste, clown visuel…) sélectionnées par un comité de professionnels, environ 15 compagnies. Autonomie technique, 1 à 4 représentations par jour en extérieur.",
   "remuneration": "Hébergement (internat) et repas pris en charge ; pas de cachet, jeu au chapeau. Prix du public 1 500 €, prix du jury 1 000 €.",
@@ -204,10 +204,11 @@
   "contact": "L'Odyssée, Esplanade Robert Badinter, 24000 Périgueux ; 05 53 53 18 71",
   "lien": "https://www.odyssee-perigueux.fr/candidater-pour-le-off/",
   "sources": [
-   "https://www.odyssee-perigueux.fr/candidater-pour-le-off/"
+   "https://www.odyssee-perigueux.fr/candidater-pour-le-off/",
+   "https://docs.google.com/forms/d/e/1FAIpQLScj-3NeHkHEPQQAYPje94aYOb3SPG7T6-C6MIeu-1F8A_k02w/viewform"
   ],
   "fiabilite": "haute",
-  "notes": "Pour 2026, les candidatures ont couru du 27 octobre 2025 au 12 janvier 2026. Si le calendrier se répète, l'appel 2027 ouvrirait fin octobre 2026 : à surveiller tout de suite."
+  "notes": "L'appel 2027 est ouvert depuis le 26 octobre 2026, date limite le 10 janvier 2027. Sélection par le comité mi-janvier, réponse aux compagnies fin janvier."
  },
  {
   "nom": "Au Bonheur des Mômes – Coup de pouce aux jeunes compagnies",
@@ -517,6 +518,31 @@
   ],
   "fiabilite": "haute",
   "notes": "Concours de numéros de cirque, pas réservé aux clowns. La date limite a été avancée au 15/09/2026. Prochaine fenêtre probable : été 2027 pour l'édition 2028."
+ },
+ {
+  "nom": "Kandidator – scène ouverte / concours national d'humour",
+  "type": "scène ouverte",
+  "organisateur": "École de l'Humour (EHAS)",
+  "ville": "Paris (3e)",
+  "region": "Île-de-France",
+  "pays": "France",
+  "lieu": "Théâtre du Marais, 37 rue Volta, 75003 Paris",
+  "date_limite": null,
+  "dates_evenement": "Sélections un lundi sur deux à 21h, de septembre à avril",
+  "recurrence": "bimensuelle (saison sept.-avril)",
+  "edition": null,
+  "statut": "ouvert",
+  "duree_numero": "5 min max pour la scène ouverte (10 min en demi-finale, 15 min en finale)",
+  "criteres": "Tous les styles sont acceptés à condition d'être à caractère humoristique ; sélection par applaudimètre du public le soir même. Un numéro clownesque semble admissible s'il fait rire, mais ce n'est pas confirmé explicitement par l'organisation. Candidature par envoi d'une vidéo.",
+  "remuneration": null,
+  "frais_inscription": null,
+  "contact": "sceneouverte@kandidator.fr (envoi de vidéo) ; ehas@ecoledelhumour.com ; 06 88 23 40 67",
+  "lien": "https://ecoledelhumour.com/kandidator-scene-ouverte-et-plateau-d-humoristes/",
+  "sources": [
+   "https://ecoledelhumour.com/kandidator-scene-ouverte-et-plateau-d-humoristes/"
+  ],
+  "fiabilite": "moyenne",
+  "notes": "Candidature permanente (pas de date limite), par vidéo envoyée à l'adresse dédiée. Orienté humour/stand-up plutôt que clown spécifiquement : l'acceptation d'un numéro clownesque n'est pas garantie, à confirmer par mail avant de candidater. Existe aussi à Lyon (Le Boui-Boui, un dimanche sur deux à 16h)."
  },
  {
   "nom": "Scène ouverte Clown – café-théâtre 7ème Vague / Le Terrier",
@@ -873,7 +899,8 @@
   "contact": "wintercircus@hurjaruuth.fi",
   "lien": "https://forms.cloud.microsoft/e/h4rFVeJnd1",
   "sources": [
-   "http://www.circuscentrum.be/nl/kansen/winter-circus-2027-28-open-call-circus-artists"
+   "http://www.circuscentrum.be/nl/kansen/winter-circus-2027-28-open-call-circus-artists",
+   "https://www.fedec.eu/en/article/1009-winter-circus-2027-28-open-call-for-circus-artists-dance-theatre-hurjaruuth-helsinki-fin"
   ],
   "fiabilite": "haute",
   "notes": "Ce n'est pas un festival : c'est un engagement de plusieurs mois dans un spectacle. Tous les candidats recevront une réponse avant le 31/01/2027."
