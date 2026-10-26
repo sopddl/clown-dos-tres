@@ -34,8 +34,8 @@ const aLaUne = actualites.filter((a) => a.aLaUne && a.aLaUne.jusquAu >= aujourdh
 					l'Ourcq - 3 quai de l’Oise, 75019 Paris.
 				</p>
 				<div class="cta">
-					<a class="btn" href="/agenda">Voir les prochaines dates</a>
-					<a class="btn btn-outline" href="/scene-ouverte">Participer à la Scène Ouverte</a>
+					<a class="btn" href="/agenda/">Voir les prochaines dates</a>
+					<a class="btn btn-outline" href="/scene-ouverte/">Participer à la Scène Ouverte</a>
 				</div>
 			</div>
 		</div>
@@ -46,7 +46,7 @@ const aLaUne = actualites.filter((a) => a.aLaUne && a.aLaUne.jusquAu >= aujourdh
 			<section class="une" aria-label="À la une">
 				<div class="wrap une-liste">
 					{aLaUne.map((a) => (
-						<a class="une-item" href={`/actualites#${a.id}`} data-jusqu={a.aLaUne!.jusquAu}>
+						<a class="une-item" href={`/actualites/#${a.id}`} data-jusqu={a.aLaUne!.jusquAu}>
 							<span class="une-label">À la une</span>
 							<span class="une-titre">{a.aLaUne!.titre}</span>
 							<span class="une-quand">{a.aLaUne!.quand}</span>
@@ -82,7 +82,7 @@ const aLaUne = actualites.filter((a) => a.aLaUne && a.aLaUne.jusquAu >= aujourdh
 			<div class="grid">
 				{prochains.map((evenement) => <EventCard evenement={evenement} />)}
 			</div>
-			<a class="btn" href="/agenda">Tout l'agenda</a>
+			<a class="btn" href="/agenda/">Tout l'agenda</a>
 		</div>
 	</section>
 
@@ -104,7 +104,7 @@ const aLaUne = actualites.filter((a) => a.aLaUne && a.aLaUne.jusquAu >= aujourdh
 					Une seule revendication, mais de taille : <strong>«&nbsp;L’humanisme par le
 					rire&nbsp;!&nbsp;»</strong>
 				</p>
-				<a class="btn" href="/collectif">Découvrir le collectif</a>
+				<a class="btn" href="/collectif/">Découvrir le collectif</a>
 			</div>
 		</div>
 	</section>

@@ -23,21 +23,21 @@ export const lieu = {
 
 const francois = {
 	'@type': 'Person',
-	'@id': `${SITE_URL}/collectif#francois-duregne`,
+	'@id': `${SITE_URL}/collectif/#francois-duregne`,
 	name: 'François Durègne',
 	alternateName: 'Pancho Durango',
 	jobTitle: 'Clown, metteur en scène',
 	image: new URL(francoisHublot.src, SITE_URL).href,
-	url: `${SITE_URL}/collectif`,
+	url: `${SITE_URL}/collectif/`,
 };
 
 const alain = {
 	'@type': 'Person',
-	'@id': `${SITE_URL}/collectif#alain-carbonnel`,
+	'@id': `${SITE_URL}/collectif/#alain-carbonnel`,
 	name: 'Alain Carbonnel',
 	jobTitle: 'Comédien, clown, musicien',
 	image: new URL(alainHublot.src, SITE_URL).href,
-	url: `${SITE_URL}/collectif`,
+	url: `${SITE_URL}/collectif/`,
 };
 
 export const collectif = {
@@ -107,7 +107,7 @@ export function evenementSchema(e: Evenement) {
 				price: montant,
 				priceCurrency: 'EUR',
 				availability: 'https://schema.org/InStock',
-				url: `${SITE_URL}/agenda`,
+				url: `${SITE_URL}/agenda/`,
 			},
 		}),
 	};

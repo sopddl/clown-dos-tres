@@ -3,17 +3,18 @@ import { site } from '../data/site';
 
 const nav = [
 	{ href: '/', label: 'Accueil' },
-	{ href: '/agenda', label: 'Agenda' },
-	{ href: '/scene-ouverte', label: 'Scène Ouverte' },
-	{ href: '/actualites', label: 'Actus' },
-	{ href: '/appels', label: 'Appels' },
-	{ href: '/galerie', label: 'Galerie' },
-	{ href: '/collectif', label: 'Collectif' },
+	{ href: '/agenda/', label: 'Agenda' },
+	{ href: '/scene-ouverte/', label: 'Scène Ouverte' },
+	{ href: '/actualites/', label: 'Actus' },
+	{ href: '/appels/', label: 'Appels' },
+	{ href: '/galerie/', label: 'Galerie' },
+	{ href: '/collectif/', label: 'Collectif' },
 	// Ancre vers le pied de page (présent sur toutes les pages).
 	{ href: '#contact', label: 'Contact' },
 ];
 
-const current = Astro.url.pathname;
+// Page courante, normalisée avec la barre finale (les liens du menu finissent par « / »).
+const current = Astro.url.pathname.endsWith('/') ? Astro.url.pathname : `${Astro.url.pathname}/`;
 ---
 
 <header class="site-header">
