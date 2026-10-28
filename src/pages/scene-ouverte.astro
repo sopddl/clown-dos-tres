@@ -2,6 +2,7 @@
 import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
 import { site } from '../data/site';
+import { galeries } from '../data/galeries';
 import poster from '../assets/agenda/scene-ouverte-25-nov-2026.jpg';
 
 const criteres = [
@@ -44,6 +45,15 @@ const criteres = [
 					Cette scène ouverte tout public se place sous le signe de la rencontre et de la
 					bienveillance.
 				</p>
+				{
+					galeries
+						.filter((g) => g.slug.startsWith('scene-ouverte'))
+						.map((g) => (
+							<a class="btn revivre" href={`/galerie/${g.slug}/`}>
+								Revivre en photos : {g.titre.replace('Scène ouverte du ', '')}
+							</a>
+						))
+				}
 			</div>
 			<div class="poster">
 				<Image src={poster} alt="Affiche Scène Ouverte Clown, 2de édition, mercredi 25 novembre 2026 à 20h, Péniche Grande Fantaisie" />
@@ -153,5 +163,9 @@ const criteres = [
 		margin-top: 0.8rem;
 		font-size: 0.9rem;
 		text-align: center;
+	}
+
+	.revivre {
+		margin-top: 0.5rem;
 	}
 </style>
