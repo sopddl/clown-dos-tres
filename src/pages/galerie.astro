@@ -1,86 +1,90 @@
 ---
 import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
-import { descriptionsPhotos } from '../data/photos';
+import OngletsGalerie from '../components/OngletsGalerie.astro';
+import { photosGalerie, rubriques } from '../data/photos';
 
-// Pour ajouter une photo : déposez le fichier dans src/assets/photos/, il apparaît ici automatiquement.
+// Pour ajouter une photo : déposez le fichier dans src/assets/photos/ et ajoutez sa ligne dans src/data/photos.ts.
 const photosModules = import.meta.glob<{ default: ImageMetadata }>('../assets/photos/*.jpg', {
 	eager: true,
 });
-const photos = Object.entries(photosModules).map(([chemin, mod]) => ({
-	...mod.default,
-	alt: descriptionsPhotos[chemin.split('/').pop()!] ?? altParDefaut,
-}));
-// Deux blocs : les paysages puis les portraits, chacun dans des cases à son format (pas de recadrage).
-const paysages = photos.filter((photo) => photo.width >= photo.height);
-const portraits = photos.filter((photo) => photo.width < photo.height);
 const altParDefaut = "Photo d'un spectacle du collectif Clown, dos, tres sur la Péniche Grande Fantaisie";
+const photos = Object.entries(photosModules).map(([chemin, mod]) => {
+	const info = photosGalerie[chemin.split('/').pop()!];
+	return { image: mod.default, alt: info?.alt ?? altParDefaut, rubrique: info?.rubrique ?? 'clownologie' };
+});
+
+// « En scène » puis « Ateliers », chaque rubrique avec ses photos (format d'origine, sans recadrage).
+const parties = ['En scène', 'Ateliers'].map((partie) => ({
+	partie,
+	rubriques: rubriques
+		.filter((r) => r.partie === partie)
+		.map((r) => ({ ...r, photos: photos.filter((p) => p.rubrique === r.id) }))
+		.filter((r) => r.photos.length > 0),
+}));
 ---
 
 <Layout
 	title="Galerie"
 	fullTitle="Photos des Mercredis du Clown · Clown, dos, tres"
-	description="Photos des Mercredis du Clown : spectacles, cabarets et scènes ouvertes du collectif Clown, dos, tres sur la Péniche Grande Fantaisie, Paris 19e."
+	description="Photos du collectif Clown, dos, tres : Clownologie, cabarets Clown à l'usine, K barré, festival MigrActions, ateliers et scènes ouvertes clown à Paris."
 >
 	<section class="section">
 		<div class="wrap">
-			<p class="eyebrow">En scène</p>
 			<h1>Galerie</h1>
-			<p>Quelques instants des Mercredis du Clown, capturés sur la péniche.</p>
-			<div class="grid grid-paysage">
-				{
-					paysages.map((photo) => (
-						<div class="tile tile-paysage">
-							<Image src={photo} alt={photo.alt} widths={[400, 800]} sizes="(max-width: 700px) 100vw, 380px" />
-						</div>
-					))
-				}
-			</div>
-			<div class="grid grid-portrait">
-				{
-					portraits.map((photo) => (
-						<div class="tile tile-portrait">
-							<Image src={photo} alt={photo.alt} widths={[320, 640]} sizes="(max-width: 700px) 45vw, 300px" />
-						</div>
-					))
-				}
-			</div>
+			<OngletsGalerie actif="collectif" />
+			{
+				parties.map((p) => (
+					<section class="partie">
+						<h2>{p.partie}</h2>
+						{p.rubriques.map((r) => (
+							<div class="rubrique">
+								<h3>{r.titre}</h3>
+								<div class="photos">
+									{r.photos.map((photo) => (
+										<Image
+											src={photo.image}
+											alt={photo.alt}
+											widths={[400, 800]}
+											sizes="(max-width: 700px) 100vw, 360px"
+										/>
+									))}
+								</div>
+							</div>
+						))}
+					</section>
+				))
+			}
 		</div>
 	</section>
 </Layout>
 
 <style>
-	.grid {
-		margin-top: 2rem;
-		display: grid;
-		gap: 1rem;
+	.partie + .partie {
+		margin-top: 3rem;
 	}
 
-	.grid-paysage {
-		grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+	.rubrique {
+		margin-top: 1.5rem;
 	}
 
-	.grid-portrait {
-		grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+	h3 {
+		font-size: 1.15rem;
+		margin: 0 0 0.8rem;
 	}
 
-	.tile {
-		overflow: hidden;
-		border-radius: 3px;
+	/* Colonnes : chaque photo garde son format, paysage ou portrait. */
+	.photos {
+		columns: 3 260px;
+		column-gap: 1rem;
 	}
 
-	.tile-paysage {
-		aspect-ratio: 16 / 9;
-	}
-
-	.tile-portrait {
-		aspect-ratio: 3 / 4;
-	}
-
-	.tile :global(img) {
-		width: 100%;
-		height: 100%;
-		object-fit: cover;
+	.photos :global(img) {
 		display: block;
+		width: 100%;
+		height: auto;
+		margin-bottom: 1rem;
+		break-inside: avoid;
+		border-radius: 3px;
 	}
 </style>

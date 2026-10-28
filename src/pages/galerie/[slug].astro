@@ -1,0 +1,293 @@
+---
+// Galerie d'un événement (scène ouverte…) : photos dans l'ordre de la soirée, visionneuse et téléchargement.
+import { Image, getImage } from 'astro:assets';
+import Layout from '../../layouts/Layout.astro';
+import OngletsGalerie from '../../components/OngletsGalerie.astro';
+import { galeries } from '../../data/galeries';
+import { site } from '../../data/site';
+
+export function getStaticPaths() {
+	return galeries.map((g) => ({ params: { slug: g.slug }, props: { galerie: g } }));
+}
+
+const { galerie } = Astro.props;
+const toutes = import.meta.glob<{ default: ImageMetadata }>('../../assets/galeries/*/*.jpg', { eager: true });
+const fichiers = Object.entries(toutes)
+	.filter(([chemin]) => chemin.includes(`/galeries/${galerie.slug}/`))
+	.sort(([a], [b]) => a.localeCompare(b));
+
+const dateFr = new Date(`${galerie.jour}T12:00:00`).toLocaleDateString('fr-FR', {
+	day: 'numeric',
+	month: 'long',
+	year: 'numeric',
+});
+const total = fichiers.length;
+const photos = await Promise.all(
+	fichiers.map(async ([chemin, mod], i) => {
+		const grande = await getImage({ src: mod.default, width: 1600, format: 'webp' });
+		return {
+			image: mod.default,
+			grande: grande.src,
+			original: mod.default.src, // fichier JPEG d'origine (2560 px), pour le téléchargement
+			nomFichier: chemin.split('/').pop()!,
+			alt: `${galerie.titre}, ${galerie.lieu} — photo ${i + 1} sur ${total}`,
+		};
+	}),
+);
+const credit = `Photographie : ${galerie.photographe}.`;
+---
+
+<Layout
+	title={galerie.titre}
+	fullTitle={`${galerie.titre} · Photos`}
+	description={`${total} photos de la ${galerie.titre.charAt(0).toLowerCase()}${galerie.titre.slice(1)}, ${galerie.lieu}, Paris 19e. ${credit} Les artistes peuvent télécharger leurs photos.`}
+	image={photos[0]?.original}
+>
+	<section class="section">
+		<div class="wrap">
+			<p class="eyebrow">Galerie</p>
+			<h1>{galerie.titre}</h1>
+			<OngletsGalerie actif={galerie.slug} />
+			<p class="intro">
+				La soirée en {total} photos, dans l’ordre des passages. Cliquez sur une photo pour l’agrandir et
+				parcourir la soirée.
+				{
+					galerie.telechargement && (
+						<>
+							{' '}
+							Artistes de la scène ouverte : téléchargez librement les photos qui vous concernent pour votre
+							travail, en mentionnant le photographe.
+						</>
+					)
+				}
+			</p>
+			<p class="credit">{credit}</p>
+			<p class="soutien">Un événement organisé avec le soutien de l’association {site.sceneOuverte.soutien}.</p>
+
+			<ol class="mosaique">
+				{
+					photos.map((p, i) => (
+						<li>
+							<button type="button" class="vignette" data-index={i} aria-label={`Agrandir la photo ${i + 1}`}>
+								<Image src={p.image} alt={p.alt} widths={[400, 700]} sizes="(max-width: 700px) 50vw, 280px" />
+							</button>
+							{galerie.telechargement && (
+								<a class="telecharger" href={p.original} download={p.nomFichier}>
+									Télécharger
+								</a>
+							)}
+						</li>
+					))
+				}
+			</ol>
+		</div>
+	</section>
+
+	<dialog class="visionneuse" aria-label="Visionneuse de photos">
+		<figure>
+			<img alt="" />
+			<figcaption>
+				<span class="compteur"></span>
+				<span>{credit}</span>
+				{galerie.telechargement && <a class="btn telecharger-grand" download>Télécharger</a>}
+			</figcaption>
+		</figure>
+		<button type="button" class="nav precedent" aria-label="Photo précédente">‹</button>
+		<button type="button" class="nav suivant" aria-label="Photo suivante">›</button>
+		<button type="button" class="fermer" aria-label="Fermer">×</button>
+	</dialog>
+</Layout>
+
+<script
+	type="application/json"
+	id="photos-galerie"
+	set:html={JSON.stringify(photos.map((p) => ({ grande: p.grande, original: p.original, nom: p.nomFichier, alt: p.alt })))}
+/>
+
+<script>
+	// Visionneuse : agrandir, parcourir (flèches, clavier, balayage), télécharger.
+	const donnees: { grande: string; original: string; nom: string; alt: string }[] = JSON.parse(
+		document.getElementById('photos-galerie')?.textContent ?? '[]',
+	);
+	const boite = document.querySelector<HTMLDialogElement>('.visionneuse')!;
+	const img = boite.querySelector('img')!;
+	const compteur = boite.querySelector('.compteur')!;
+	const lien = boite.querySelector<HTMLAnchorElement>('.telecharger-grand');
+	let courant = 0;
+
+	function afficher(i: number) {
+		courant = (i + donnees.length) % donnees.length;
+		const d = donnees[courant];
+		img.src = d.grande;
+		img.alt = d.alt;
+		compteur.textContent = `${courant + 1} / ${donnees.length}`;
+		if (lien) {
+			lien.href = d.original;
+			lien.download = d.nom;
+		}
+		// précharge la suivante
+		new Image().src = donnees[(courant + 1) % donnees.length].grande;
+	}
+
+	document.querySelectorAll<HTMLButtonElement>('.vignette').forEach((b) =>
+		b.addEventListener('click', () => {
+			afficher(Number(b.dataset.index));
+			boite.showModal();
+		}),
+	);
+	boite.querySelector('.precedent')!.addEventListener('click', () => afficher(courant - 1));
+	boite.querySelector('.suivant')!.addEventListener('click', () => afficher(courant + 1));
+	boite.querySelector('.fermer')!.addEventListener('click', () => boite.close());
+	boite.addEventListener('click', (e) => {
+		if (e.target === boite) boite.close();
+	});
+	document.addEventListener('keydown', (e) => {
+		if (!boite.open) return;
+		if (e.key === 'ArrowLeft') afficher(courant - 1);
+		if (e.key === 'ArrowRight') afficher(courant + 1);
+	});
+	let departX = 0;
+	boite.addEventListener('touchstart', (e) => (departX = e.touches[0].clientX), { passive: true });
+	boite.addEventListener('touchend', (e) => {
+		const dx = e.changedTouches[0].clientX - departX;
+		if (Math.abs(dx) > 50) afficher(courant + (dx < 0 ? 1 : -1));
+	});
+</script>
+
+<style>
+	.intro {
+		max-width: 46em;
+	}
+
+	.credit {
+		font-weight: 700;
+		margin-bottom: 0.2rem;
+	}
+
+	.soutien {
+		font-size: 0.9rem;
+		opacity: 0.85;
+		margin-top: 0;
+	}
+
+	.mosaique {
+		list-style: none;
+		padding: 0;
+		margin: 2rem 0 0;
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+		gap: 1rem;
+	}
+
+	.vignette {
+		display: block;
+		width: 100%;
+		padding: 0;
+		border: 0;
+		background: none;
+		cursor: zoom-in;
+	}
+
+	.vignette :global(img) {
+		display: block;
+		width: 100%;
+		height: auto;
+		border-radius: 3px;
+	}
+
+	.telecharger {
+		display: inline-block;
+		margin-top: 0.3rem;
+		font-size: 0.85rem;
+	}
+
+	.visionneuse {
+		width: 100vw;
+		height: 100vh;
+		max-width: none;
+		max-height: none;
+		margin: 0;
+		padding: 0;
+		border: 0;
+		background: rgba(20, 12, 10, 0.95);
+		color: var(--creme-clair);
+	}
+
+	.visionneuse::backdrop {
+		background: rgba(20, 12, 10, 0.95);
+	}
+
+	.visionneuse figure {
+		margin: 0;
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: 0.8rem;
+		padding: 3.5rem 4rem 1.5rem;
+		box-sizing: border-box;
+	}
+
+	.visionneuse img {
+		max-width: 100%;
+		max-height: calc(100vh - 9rem);
+		object-fit: contain;
+	}
+
+	.visionneuse figcaption {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: center;
+		gap: 0.6rem 1.4rem;
+		font-size: 0.9rem;
+	}
+
+	.visionneuse .nav,
+	.visionneuse .fermer {
+		position: absolute;
+		background: none;
+		border: 0;
+		color: var(--creme-clair);
+		font-size: 3rem;
+		line-height: 1;
+		cursor: pointer;
+		padding: 0.5rem 1rem;
+	}
+
+	.precedent {
+		left: 0.5rem;
+		top: 50%;
+		transform: translateY(-50%);
+	}
+
+	.suivant {
+		right: 0.5rem;
+		top: 50%;
+		transform: translateY(-50%);
+	}
+
+	.fermer {
+		top: 0.5rem;
+		right: 0.5rem;
+	}
+
+	@media (max-width: 700px) {
+		.mosaique {
+			grid-template-columns: repeat(2, 1fr);
+			gap: 0.6rem;
+		}
+
+		.visionneuse figure {
+			padding: 3.5rem 0.5rem 1rem;
+		}
+
+		.visionneuse .nav {
+			font-size: 2.4rem;
+			top: auto;
+			bottom: 0.5rem;
+			transform: none;
+		}
+	}
+</style>

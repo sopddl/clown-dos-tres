@@ -1,0 +1,55 @@
+---
+// Onglets de la galerie : la galerie du collectif, puis une par événement.
+import { galeries } from '../data/galeries';
+
+interface Props {
+	actif: string; // 'collectif' ou le slug d'une galerie d'événement
+}
+const { actif } = Astro.props;
+const onglets = [
+	{ id: 'collectif', href: '/galerie/', label: 'Le collectif en images' },
+	...galeries.map((g) => ({ id: g.slug, href: `/galerie/${g.slug}/`, label: g.onglet })),
+];
+---
+
+<nav class="onglets" aria-label="Galeries">
+	{
+		onglets.map((o) => (
+			<a href={o.href} aria-current={o.id === actif ? 'page' : undefined}>
+				{o.label}
+			</a>
+		))
+	}
+</nav>
+
+<style>
+	.onglets {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem;
+		margin: 1.2rem 0 2rem;
+		border-bottom: 2px solid var(--ombre);
+	}
+
+	.onglets a {
+		padding: 0.5em 1em;
+		text-decoration: none;
+		color: var(--rouge);
+		font-family: 'Bebas Neue', sans-serif;
+		letter-spacing: 0.04em;
+		font-size: 1.05rem;
+		border-radius: 4px 4px 0 0;
+		margin-bottom: -2px;
+		border: 2px solid transparent;
+	}
+
+	.onglets a[aria-current='page'] {
+		border-color: var(--ombre);
+		border-bottom-color: var(--creme-clair);
+		background: var(--creme-clair);
+	}
+
+	.onglets a:hover {
+		text-decoration: underline;
+	}
+</style>
