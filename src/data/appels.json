@@ -272,7 +272,7 @@
   "lieu": null,
   "date_limite": null,
   "dates_evenement": "Dernière édition connue : 14 juin 2025",
-  "recurrence": "annuel (juin), depuis 2021",
+  "recurrence": "annuel (juin), depuis 2021 ; depuis 2024 alterne une version « maxi » (journée entière, années impaires) et une version « mini » (soirée, années paires)",
   "edition": null,
   "statut": "récurrent/à venir",
   "duree_numero": null,
@@ -282,10 +282,11 @@
   "contact": "festivalintergalactiqueclown@gmail.com (dossiers) ; nee.au.vent@gmail.com",
   "lien": "https://www.neeauvent.com/festival-intergalactique-de-clown",
   "sources": [
-   "https://www.neeauvent.com/festival-intergalactique-de-clown"
+   "https://www.neeauvent.com/festival-intergalactique-de-clown",
+   "https://www.objectifsud.fr/actualites/culture-festival-intergalactique-des-clowns-decouvrez-les-dun-autre-oeil-147569.php"
   ],
   "fiabilite": "moyenne",
-  "notes": "Candidature spontanée permanente, sans date limite publiée. Aucune information sur une édition 2026 ou 2027 sur la page ouverte."
+  "notes": "Candidature spontanée permanente, sans date limite publiée. D'après l'alternance maxi/mini en place depuis 2024, 2026 devrait être une version « mini » (soirée) et 2027 une version « maxi » (journée complète), mais non confirmé par une source datée. Aucune information sur une édition 2026 ou 2027 trouvée sur les pages ouvertes au 2026-11-02."
  },
  {
   "nom": "The Funky Clown Festival",
