@@ -78,7 +78,20 @@ function prixEnEuros(prix: string): string | undefined {
 
 export function evenementSchema(e: Evenement) {
 	const startDate = e.debut ? `${e.jour}T${e.debut}:00${decalageParis(e.jour, e.debut)}` : e.jour;
-	const endDate = e.fin ? `${e.jour}T${e.fin}:00${decalageParis(e.jour, e.fin)}` : undefined;
+	const endDate = e.jourFin ?? (e.fin ? `${e.jour}T${e.fin}:00${decalageParis(e.jour, e.fin)}` : undefined);
+	const lieuEvenement = e.lieuExterieur
+		? {
+				'@type': 'Place',
+				name: e.lieuExterieur.nom,
+				address: {
+					'@type': 'PostalAddress',
+					streetAddress: e.lieuExterieur.rue,
+					postalCode: e.lieuExterieur.codePostal,
+					addressLocality: e.lieuExterieur.ville,
+					addressCountry: 'FR',
+				},
+			}
+		: lieu;
 	const montant = e.prix ? prixEnEuros(e.prix) : undefined;
 	return {
 		'@type': 'Event',
@@ -88,7 +101,7 @@ export function evenementSchema(e: Evenement) {
 		description: e.description ?? `${e.titre} — ${site.accroche} sur la ${site.peniche.nom}, Paris 19e.`,
 		eventStatus: e.reporte ? 'https://schema.org/EventPostponed' : 'https://schema.org/EventScheduled',
 		eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
-		location: lieu,
+		location: lieuEvenement,
 		image: e.image ? new URL(e.image.src, SITE_URL).href : `${SITE_URL}/og-image.jpg`,
 		organizer: { '@id': `${SITE_URL}/#collectif`, '@type': 'PerformingGroup', name: site.nom, url: SITE_URL },
 		...(e.type !== 'atelier' && {

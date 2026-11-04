@@ -12,7 +12,7 @@ const schema = actus
 	.map((a) => ({
 		'@type': 'Event',
 		name: a.titre,
-		description: a.texte,
+		description: a.texte.replace(/\n\n/g, ' '),
 		startDate: a.evenement!.debut,
 		endDate: a.evenement!.fin,
 		eventStatus: 'https://schema.org/EventScheduled',
@@ -70,12 +70,19 @@ const schema = actus
 									{actu.source && <span> · {actu.source}</span>}
 								</p>
 								<h2>{actu.titre}</h2>
-								<p>{actu.texte}</p>
-								{actu.lien && (
-									<a class="btn" href={actu.lien} target="_blank" rel="noopener">
-										{actu.lienLabel ?? 'En savoir plus'}
-									</a>
-								)}
+								{actu.texte.split('\n\n').map((para) => <p>{para}</p>)}
+								<div class="actions">
+									{actu.lien && (
+										<a class="btn" href={actu.lien} target="_blank" rel="noopener">
+											{actu.lienLabel ?? 'En savoir plus'}
+										</a>
+									)}
+									{actu.flyer && (
+										<a class="flyer" href={actu.flyer.src} download={`flyer-${actu.id ?? 'actualite'}.jpg`}>
+											Télécharger le flyer
+										</a>
+									)}
+								</div>
 							</div>
 						</article>
 					))
@@ -104,6 +111,17 @@ const schema = actus
 		width: 100%;
 		height: auto;
 		border-radius: 4px;
+	}
+
+	.actions {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 0.8rem 1.4rem;
+	}
+
+	.flyer {
+		font-weight: 700;
 	}
 
 	figure {

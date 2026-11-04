@@ -7,6 +7,7 @@ import clownologieNovembre from '../assets/agenda/clownologie-11-nov-2026.jpg';
 import shakerTroupe from '../assets/agenda/shaker-troupe.jpg';
 import sceneOuverteOctobre from '../assets/agenda/scene-ouverte-14-oct-2026.jpg';
 import sceneOuverteNovembre from '../assets/agenda/scene-ouverte-25-nov-2026.jpg';
+import flyerClownToujours from '../assets/agenda/flyer-stage-clown-toujours.jpg';
 
 export type Evenement = {
 	date: string; // format libre affiché tel quel, ex. "Mercredi 14 octobre 2026"
@@ -18,11 +19,13 @@ export type Evenement = {
 	description?: string;
 	lieu?: string;
 	prix?: string;
-	type: 'scene-ouverte' | 'clownologie' | 'cabaret' | 'spectacle' | 'atelier' | 'autre';
+	type: 'scene-ouverte' | 'clownologie' | 'cabaret' | 'spectacle' | 'atelier' | 'stage' | 'autre';
 	lien?: string;
 	compagnie?: string; // troupe invitée, affichée « Par … » et lue par Google
 	image?: ImageMetadata; // affiche ou visuel, affiché en tête de la carte (fichier dans src/assets/agenda/)
 	imageAlt?: string; // description du visuel (par défaut « Affiche : titre »)
+	lieuExterieur?: { nom: string; rue: string; codePostal: string; ville: string }; // événement hors péniche (lu par Google)
+	jourFin?: string; // AAAA-MM-JJ, événement sur plusieurs jours
 	reservation?: boolean; // affiche un bouton « Réserver » (mail à contact@)
 	reporte?: string; // date reportée/annulée : texte affiché à la place de l'heure, ex. « Reporté en décembre »
 };
@@ -66,6 +69,23 @@ export const evenements: Evenement[] = [
 		image: clownologieNovembre,
 		type: 'clownologie',
 		reporte: 'Reporté en décembre — nouvelle date à venir',
+	},
+	{
+		date: 'Samedis et dimanches 14-15 et 21-22 novembre 2026',
+		jour: '2026-11-14',
+		jourFin: '2026-11-22',
+		debut: '09:00',
+		heure: 'De 9h à 15h · 20 heures sur 4 jours',
+		titre: 'Stage « Clown toujours » avec François Durègne',
+		description:
+			'Pourquoi chercher son clown s’il est déjà là\u00a0? Jeux, exercices scéniques et improvisations pour laisser naître puis développer son clown. Sans prérequis. Paiement en 2 fois possible.',
+		lieu: 'Théâtre de l’Opprimé, 78-80 rue du Charolais, Paris 12e',
+		lieuExterieur: { nom: 'Théâtre de l’Opprimé', rue: '78-80 rue du Charolais', codePostal: '75012', ville: 'Paris' },
+		prix: '400 € (réduit 300 €)',
+		type: 'stage',
+		image: flyerClownToujours,
+		imageAlt: 'Flyer du stage Clown toujours, dirigé par François Durègne, Théâtre de l’Opprimé, novembre 2026',
+		lien: '/actualites/#stage-clown-toujours',
 	},
 	{
 		date: 'Mercredi 18 novembre 2026',

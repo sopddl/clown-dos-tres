@@ -10,7 +10,9 @@ import { actualites } from '../data/actualites';
 import hero from '../assets/accueil/fond-salle-clown.jpg';
 import photoGroupe from '../assets/photos/8d5ffa21-dcdf-4aab-a2f1-da88d4f3944c-1.jpg';
 
-const prochains = evenements.slice(0, 3);
+// Prochains rendez-vous : seulement ceux à venir (le site est reconstruit au moins chaque lundi).
+const jourDuBuild = new Date().toISOString().slice(0, 10);
+const prochains = evenements.filter((e) => (e.jourFin ?? e.jour) >= jourDuBuild).slice(0, 3);
 
 // Bandeau « À la une » : actualités mises en avant, jusqu'à leur date de fin.
 const aujourdhui = new Date().toISOString().slice(0, 10);
@@ -42,20 +44,50 @@ const aLaUne = actualites.filter((a) => a.aLaUne && a.aLaUne.jusquAu >= aujourdh
 	</section>
 
 	{
-		aLaUne.length > 0 && (
-			<section class="une" aria-label="À la une">
-				<div class="wrap une-liste">
-					{aLaUne.map((a) => (
-						<a class="une-item" href={`/actualites/#${a.id}`} data-jusqu={a.aLaUne!.jusquAu}>
-							<span class="une-label">À la une</span>
-							<span class="une-titre">{a.aLaUne!.titre}</span>
-							<span class="une-quand">{a.aLaUne!.quand}</span>
-							<span class="une-fleche" aria-hidden="true">→</span>
+		aLaUne.map((a) => (
+			<section class="une" aria-label="À la une" data-jusqu={a.aLaUne!.jusquAu}>
+				<div class="wrap une-grille">
+					{(a.flyer ?? a.image) && (
+						<a href={`/actualites/#${a.id}`} class="une-visuel">
+							<Image
+								src={(a.flyer ?? a.image)!}
+								alt={a.flyer ? `Flyer : ${a.titre}` : (a.imageAlt ?? a.titre)}
+								widths={[300, 600]}
+								sizes="(max-width: 760px) 60vw, 280px"
+							/>
 						</a>
-					))}
+					)}
+					<div>
+						<p class="une-label">
+							À la une{' '}
+							{a.evenement && (
+								<span class="une-compte" data-debut={a.evenement.debut}>
+									· commence le {new Date(`${a.evenement.debut}T12:00:00`).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long' })}
+								</span>
+							)}
+						</p>
+						<h2>{a.aLaUne!.titre}</h2>
+						<p class="une-quand">{a.aLaUne!.quand}</p>
+						{a.accroche && <p class="une-accroche">{a.accroche}</p>}
+						<div class="une-actions">
+							{a.lien && (
+								<a class="btn" href={a.lien} target="_blank" rel="noopener">
+									S’inscrire
+								</a>
+							)}
+							<a class="btn btn-clair" href={`/actualites/#${a.id}`}>
+								Tout savoir
+							</a>
+							{a.flyer && (
+								<a class="une-flyer" href={a.flyer.src} download={`flyer-${a.id}.jpg`}>
+									Télécharger le flyer
+								</a>
+							)}
+						</div>
+					</div>
 				</div>
 			</section>
-		)
+		))
 	}
 
 	<section class="section">
@@ -116,52 +148,91 @@ const aLaUne = actualites.filter((a) => a.aLaUne && a.aLaUne.jusquAu >= aujourdh
 	document.querySelectorAll<HTMLElement>('[data-jusqu]').forEach((el) => {
 		if ((el.dataset.jusqu ?? '') < jour) el.hidden = true;
 	});
+	// Compte à rebours avant le début (« plus que 10 jours »), « en cours » ensuite.
+	document.querySelectorAll<HTMLElement>('[data-debut]').forEach((el) => {
+		const ms = Date.parse(`${el.dataset.debut}T12:00:00`) - Date.parse(`${jour}T12:00:00`);
+		const j = Math.round(ms / 86_400_000);
+		el.textContent = j > 1 ? `· plus que ${j} jours` : j === 1 ? '· c’est demain !' : j === 0 ? '· c’est aujourd’hui !' : '· en cours';
+	});
 </script>
 
 <style>
 	.une {
 		background: var(--or);
-	}
-
-	.une-liste {
-		display: grid;
-		gap: 0.2rem;
-		padding-block: 0.9rem;
-	}
-
-	.une-item {
-		display: flex;
-		flex-wrap: wrap;
-		align-items: baseline;
-		gap: 0.3rem 0.9rem;
 		color: var(--encre);
-		text-decoration: none;
 	}
 
-	.une-item[hidden] {
+	.une[hidden] {
 		display: none;
 	}
 
-	.une-label {
-		font-family: 'Bebas Neue', sans-serif;
-		letter-spacing: 0.06em;
-		background: var(--rouge);
-		color: var(--creme-clair);
-		padding: 0.1em 0.6em;
-		border-radius: 2px;
+	.une-grille {
+		display: grid;
+		grid-template-columns: 240px 1fr;
+		gap: 2.5rem;
+		align-items: center;
+		padding-block: 2.5rem;
 	}
 
-	.une-titre {
-		font-weight: 700;
-		font-size: 1.1rem;
+	.une-visuel :global(img) {
+		display: block;
+		width: 100%;
+		height: auto;
+		border-radius: 4px;
+		box-shadow: 0 10px 28px rgba(36, 21, 18, 0.35);
+		transform: rotate(-2deg);
+	}
+
+	.une-label {
+		margin: 0;
+		font-family: 'Bebas Neue', sans-serif;
+		letter-spacing: 0.06em;
+		font-size: 1.05rem;
+		color: var(--rouge);
+	}
+
+	.une h2 {
+		color: var(--encre);
+		margin: 0.2em 0 0.2em;
 	}
 
 	.une-quand {
-		font-style: italic;
+		margin: 0;
+		font-weight: 700;
 	}
 
-	.une-item:hover .une-titre {
-		text-decoration: underline;
+	.une-accroche {
+		font-style: italic;
+		font-size: 1.15rem;
+		margin: 0.8rem 0 1.2rem;
+	}
+
+	.une-actions {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 0.8rem 1.2rem;
+	}
+
+	.btn-clair {
+		background: transparent;
+		color: var(--rouge);
+	}
+
+	.une-flyer {
+		color: var(--encre);
+		font-weight: 700;
+	}
+
+	@media (max-width: 760px) {
+		.une-grille {
+			grid-template-columns: 1fr;
+			gap: 1.5rem;
+		}
+
+		.une-visuel {
+			max-width: 200px;
+		}
 	}
 
 	.hero {

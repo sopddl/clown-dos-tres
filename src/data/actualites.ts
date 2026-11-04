@@ -3,6 +3,7 @@
 import type { ImageMetadata } from 'astro';
 import dgnair from '../assets/actus/dgnair-francois-duregne.jpg';
 import cuantosCuentos from '../assets/actus/cuantos-cuentos-cuentas-mexico-2011.jpg';
+import flyerClownToujours from '../assets/actus/flyer-stage-clown-toujours.jpg';
 
 export type Actualite = {
 	jour: string; // AAAA-MM-JJ, sert au tri et à Google
@@ -15,6 +16,8 @@ export type Actualite = {
 	image?: ImageMetadata;
 	imageAlt?: string;
 	legende?: string; // affichée sous la photo (crédit, contexte)
+	flyer?: ImageMetadata; // flyer proposé au téléchargement
+	accroche?: string; // phrase d'accroche (encart de l'accueil)
 	id?: string; // ancre de la carte (#id), utilisée par le bandeau « À la une »
 	aLaUne?: { titre: string; quand: string; jusquAu: string }; // bandeau sur l'accueil jusqu'à la date AAAA-MM-JJ
 	evenement?: {
@@ -36,13 +39,20 @@ export const actualites: Actualite[] = [
 		date: 'Stage · week-ends des 14-15 et 21-22 novembre 2026',
 		titre: 'Stage « Clown toujours » avec François Durègne au Théâtre de l’Opprimé',
 		source: 'Théâtre de l’Opprimé, Paris 12e',
-		texte:
-			'Une recherche individuelle et collective du clown, fondée sur la confiance et le plaisir d’être en scène : jeux, exercices scéniques et improvisations, à la découverte de l’âme du clown et de la couleur intime propre à chacun. Deux week-ends, de 9h à 15h (20 heures au total), au 78-80 rue du Charolais. Tarifs : 400 €, 300 € en tarif réduit (étudiants, France Travail), 1 080 € en formation professionnelle (prise en charge AFDAS). Inscriptions auprès du théâtre : forum@theatredelopprime.com, 01 43 45 81 20.',
+		accroche: 'Pourquoi chercher son clown s’il est déjà là ? De nous à lui, il n’y a qu’un pas.',
+		texte: [
+			'Pourquoi chercher son clown s’il est déjà là ? De nous à lui, il n’y a qu’un pas. Nous emprunterons ensemble le plus court chemin pour s’épanouir sur scène avec un nez rouge. À partir de jeux, d’exercices scéniques et d’improvisations, un voyage personnel et collectif pour laisser naître puis développer le clown.',
+			'Objectifs : entrer dans une recherche de clown, appréhender les techniques de base du clown, apprendre à créer un clown. Aucun prérequis : le stage est ouvert à toutes et à tous.',
+			'Deux week-ends, les 14-15 et 21-22 novembre 2026, de 9h à 15h (20 heures de stage sur 4 jours), au Théâtre de l’Opprimé, 78-80 rue du Charolais, Paris 12e.',
+			'Tarifs : 400 € TTC en individuel ; 300 € en tarif réduit (étudiants, demandeurs d’emploi, intermittents) ; 1 080 € en formation professionnelle (AFDAS, France Travail, employeur ; hors CPF). Paiement en 2 fois possible. Le théâtre est un organisme de formation certifié Qualiopi.',
+			'Renseignements et inscriptions : 01 43 45 45 74, forum@theatredelopprime.com.',
+		].join('\n\n'),
 		lien: 'https://www.theatredelopprime.com/stages-invites-26-27/clown-toujours',
 		lienLabel: 'Infos et inscription',
 		image: cuantosCuentos,
 		imageAlt: 'Une clown au nez rouge et au casque à ressorts, dans « Cuántos Cuentos Cuentas », mis en scène par François Durègne à Mexico en 2011',
 		legende: '« Cuántos Cuentos Cuentas », mise en scène et dramaturgie François Durègne – Mexico, 2011',
+		flyer: flyerClownToujours,
 		aLaUne: {
 			titre: 'Stage « Clown toujours » avec François Durègne',
 			quand: '14-15 et 21-22 novembre · Théâtre de l’Opprimé, Paris 12e',
