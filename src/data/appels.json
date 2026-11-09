@@ -176,13 +176,14 @@
   "remuneration": "Non précisée. Prix « Coup de cœur » du public : intégration à la programmation IN de l'édition suivante.",
   "frais_inscription": null,
   "contact": "festarts@libourne.fr ; 05 57 74 13 14",
-  "lien": "https://www.festarts.com/appel-a-candidatures-primeurs-2026/",
+  "lien": "https://www.festarts.com/",
   "sources": [
    "https://www.festarts.com/appel-a-candidatures-primeurs-2026/",
-   "https://quoifaireabordeaux.com/festarts-2026-festival-arts-rue-libourne/"
+   "https://quoifaireabordeaux.com/festarts-2026-festival-arts-rue-libourne/",
+   "https://www.festarts.com/"
   ],
   "fiabilite": "haute",
-  "notes": "Date limite 2026 : vendredi 23 janvier 2026, sélection annoncée début mars. Appel 2027 probable vers décembre-janvier."
+  "notes": "Date limite 2026 : vendredi 23 janvier 2026, sélection annoncée début mars. Appel 2027 probable vers décembre-janvier ; pas encore publié au 2026-11-09 (page 2026 et espace-pro introuvables)."
  },
  {
   "nom": "MIMOS – OFF (festival des arts du geste)",
@@ -454,7 +455,7 @@
   "pays": "France",
   "lieu": "Salle Le Dix-Huit",
   "date_limite": null,
-  "dates_evenement": "19 janvier 2027, 20h",
+  "dates_evenement": "19 janvier 2027, 20h30",
   "recurrence": "annuel",
   "edition": "2027",
   "statut": "ouvert",
@@ -672,32 +673,6 @@
   ],
   "fiabilite": "basse",
   "notes": "Le format concours existe, mais aucun appel à candidature public n'a été trouvé. À surveiller pour un #2 : contact via les réseaux de La Flèche d'Or ou les clowns participants."
- },
- {
-  "nom": "Jours de Clowns – scène ouverte",
-  "type": "scène ouverte",
-  "organisateur": "Association La Rotonde",
-  "ville": "Redon",
-  "region": "Bretagne",
-  "pays": "France",
-  "lieu": "P'tit Théâtre Notre-Dame, quai Surcouf",
-  "date_limite": null,
-  "dates_evenement": "2025 : festival du 1er au 9 février (scène ouverte « tout public » le 8 février selon l'aperçu de recherche) ; 2026 : 6-8 février",
-  "recurrence": "annuelle (février)",
-  "edition": "3e (2026)",
-  "statut": "récurrent/à venir",
-  "duree_numero": null,
-  "criteres": null,
-  "remuneration": null,
-  "frais_inscription": null,
-  "contact": "assolarotonde@gmail.com ; 06 62 62 59 93",
-  "lien": "https://info-festival.net/festival/jours-de-clowns/",
-  "sources": [
-   "https://info-festival.net/festival/jours-de-clowns/",
-   "https://www.redon.fr/agenda/festival-jours-de-clowns/"
-  ],
-  "fiabilite": "basse",
-  "notes": "La page 2025 mentionne des scènes ouvertes (« open mic ») ; la page 2026 n'en parle pas. Sans modalités publiées, mais l'édition 2027 (vers février) est proche : contacter l'asso maintenant."
  },
  {
   "nom": "Cirques Expériences – scènes ouvertes mensuelles",
@@ -994,7 +969,7 @@
   "pays": "Autriche",
   "lieu": "Environ 100 emplacements dans le centre-ville",
   "date_limite": "2027-01-15",
-  "dates_evenement": "Édition 2026 : 23–25 juillet 2026 ; dates 2027 non publiées",
+  "dates_evenement": "15–17 juillet 2027 (édition 2026 : 23–25 juillet 2026)",
   "recurrence": "Annuelle. Appel ouvert chaque année du 15 novembre au 15 janvier",
   "edition": "39e (2027, prévue)",
   "statut": "récurrent/à venir",

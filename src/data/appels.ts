@@ -27,7 +27,7 @@ export type Appel = {
 };
 
 // Date de la dernière vérification des appels (à mettre à jour à chaque passe).
-export const misAJour = '2026-11-02';
+export const misAJour = '2026-11-09';
 
 export type Zone = 'paris' | 'france' | 'europe';
 
