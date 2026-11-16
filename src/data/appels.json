@@ -458,7 +458,7 @@
   "dates_evenement": "19 janvier 2027, 20h30",
   "recurrence": "annuel",
   "edition": "2027",
-  "statut": "ouvert",
+  "statut": "récurrent/à venir",
   "duree_numero": null,
   "criteres": "Jeunes humoristes francophones du monde entier ; candidature via un dossier Dropbox. Pas de restriction de forme affichée.",
   "remuneration": null,
@@ -469,7 +469,7 @@
    "https://www.lesplagesdurire.com/tremplin-des-plages/"
   ],
   "fiabilite": "moyenne",
-  "notes": "La page dit les inscriptions ouvertes, sans date limite. Orienté humour : vérifier par mail si un numéro clown est recevable."
+  "notes": "Inscriptions closes pour l'édition 2027 (événement le 19 janvier 2027) ; prochaine ouverture non annoncée. Orienté humour : vérifier par mail si un numéro clown est recevable."
  },
  {
   "nom": "Le Tremplin du Printemps (Printemps du Rire)",
@@ -879,7 +879,7 @@
    "https://www.fedec.eu/en/article/1009-winter-circus-2027-28-open-call-for-circus-artists-dance-theatre-hurjaruuth-helsinki-fin"
   ],
   "fiabilite": "haute",
-  "notes": "Ce n'est pas un festival : c'est un engagement de plusieurs mois dans un spectacle. Tous les candidats recevront une réponse avant le 31/01/2027."
+  "notes": "Ce n'est pas un festival : c'est un engagement de plusieurs mois dans un spectacle. Tous les candidats recevront une réponse avant le 31/01/2027. Au 16/11/2026, aucune clôture ni prolongation annoncée malgré la date limite affichée ; candidatures examinées au fil de l'eau."
  },
  {
   "nom": "LoL! Clown Open Stage",
@@ -972,7 +972,7 @@
   "dates_evenement": "15–17 juillet 2027 (édition 2026 : 23–25 juillet 2026)",
   "recurrence": "Annuelle. Appel ouvert chaque année du 15 novembre au 15 janvier",
   "edition": "39e (2027, prévue)",
-  "statut": "récurrent/à venir",
+  "statut": "ouvert",
   "duree_numero": null,
   "criteres": "Tous les arts de rue. Environ 100 numéros retenus sur plus de 800 candidatures, dont environ 50 % de nouveaux participants. 2 à 3 passages par jour. Son et matériel technique à la charge des artistes. Candidature uniquement par formulaire en ligne",
   "remuneration": "Hôtel avec petit-déjeuner, 30 € par jour et par personne (jusqu'à 10 personnes), frais de voyage selon la distance (1 000 € maximum par artiste ou groupe), recette du chapeau conservée",
@@ -984,7 +984,7 @@
    "https://www.unima.org.uk/p/call-for-artists-applications-open"
   ],
   "fiabilite": "haute",
-  "notes": "L'appel 2027 devrait ouvrir le 15/11/2026, selon la règle annuelle affichée par le site (à confirmer). Très accessible aux numéros de clown de rue."
+  "notes": "L'appel 2027 est ouvert depuis le 15/11/2026 (fenêtre annuelle de candidature du 15 novembre au 15 janvier, confirmée sur le site). Réponses envoyées jusqu'au 15 février 2027. Très accessible aux numéros de clown de rue."
  },
  {
   "nom": "Cirkulum 2027",
@@ -1112,5 +1112,106 @@
   ],
   "fiabilite": "haute",
   "notes": "Pour 2026, candidatures avant le 15 avril, réponses au plus tard le 30 avril. L'appel 2027 devrait suivre le même calendrier : à surveiller de février à avril 2027."
+ },
+ {
+  "nom": "Festival Artisti di Strada Ascona",
+  "type": "festival rue/cirque",
+  "organisateur": "Associazione Manifestazioni Ascona",
+  "ville": "Ascona",
+  "region": "Tessin",
+  "pays": "Suisse",
+  "lieu": "Piazza Elvezia / bord du lac Majeur, Ascona",
+  "date_limite": "2026-12-15",
+  "dates_evenement": "14-16 mai 2027",
+  "recurrence": "annuel",
+  "edition": null,
+  "statut": "ouvert",
+  "duree_numero": "jusqu'à 25 min le vendredi, jusqu'à 40 min samedi et dimanche",
+  "criteres": "Artistes de rue (individus, collectifs ou compagnies). Programme principal : 7-8 spectacles « au chapeau » joués chacun 5 fois, plus un cabaret final caritatif de clôture. Matériel stockable sur place (containers non surveillés la journée, fermés la nuit).",
+  "remuneration": "Pas de cachet fixe (recettes du chapeau) ; remboursement voyage 500 € par artiste ; indemnité repas 150 CHF (30 CHF x 5) ; hébergement en hôtel pris en charge ; compensation en cas d'annulation météo.",
+  "frais_inscription": null,
+  "contact": null,
+  "lien": "https://form.jotform.com/242621680189359",
+  "sources": [
+   "https://on-the-move.org/news/associazione-manifestazioni-ascona-festival-artisti-di-strada-ascona-2027-street-artists",
+   "https://form.jotform.com/242621680189359"
+  ],
+  "fiabilite": "haute",
+  "notes": "Festival de rue généraliste (pas spécifiquement clown), mais ouvert à toutes formes de numéros « au chapeau ». Candidature uniquement par formulaire en ligne."
+ },
+ {
+  "nom": "Ferrara Buskers Festival",
+  "type": "festival rue/cirque",
+  "organisateur": "Associazione Ferrara Buskers Festival ETS",
+  "ville": "Ferrare",
+  "region": "Émilie-Romagne",
+  "pays": "Italie",
+  "lieu": "Centre historique de Ferrare (avant-première à Comacchio)",
+  "date_limite": "2027-03-15",
+  "dates_evenement": "25-29 août 2027 (avant-première à Comacchio le 22 août 2027)",
+  "recurrence": "annuel (août)",
+  "edition": "40e (2027)",
+  "statut": "ouvert",
+  "duree_numero": "créneaux répétés de 60 min, entre 20h et minuit, pour les artistes « invités »",
+  "criteres": "Sélection non compétitive sur dossier (photos/vidéos). Majoritairement musiciens, mais aussi jongleurs, théâtre de rue ; des numéros de clown (clown musical, clowns sourds, ateliers clown) ont déjà figuré au programme. Candidature obligatoirement « au chapeau ». Amplification limitée, pas de groupe électrogène.",
+  "remuneration": "Artistes « invités » : repas, hébergement en hôtel et transport pris en charge, plus recette du chapeau. Artistes « accrédités » : tarifs partenaires sans remboursement, recette du chapeau uniquement. Aucun cachet fixe.",
+  "frais_inscription": null,
+  "contact": "r.bottoni@ferrarabuskers.com",
+  "lien": "https://www.ferrarabuskers.com/en/are-you-a-busker",
+  "sources": [
+   "https://www.ferrarabuskers.com/en/are-you-a-busker"
+  ],
+  "fiabilite": "haute",
+  "notes": "Candidature via admin.ferrarabuskers.com/form/artists. Réponse (y compris négative) communiquée fin mai 2027."
+ },
+ {
+  "nom": "Mostra d'Igualada – Fira de Teatre Infantil i Juvenil",
+  "type": "foire professionnelle jeune public",
+  "organisateur": "Ajuntament d'Igualada (Servei de Cultura)",
+  "ville": "Igualada",
+  "region": null,
+  "pays": "Espagne",
+  "lieu": "Igualada (espaces intérieurs et rue)",
+  "date_limite": null,
+  "dates_evenement": "8-11 avril 2027",
+  "recurrence": "annuel (avril)",
+  "edition": "38e (2027)",
+  "statut": "récurrent/à venir",
+  "duree_numero": null,
+  "criteres": "Compagnies professionnelles, spectacles jeune public toute discipline scénique (théâtre, danse, musique, cirque, marionnettes, théâtre visuel), formats intérieur et rue. Ouvert aux compagnies espagnoles et internationales. Le clown n'est pas nommé explicitement mais entre dans « toute discipline scénique ».",
+  "remuneration": null,
+  "frais_inscription": null,
+  "contact": "info@mostraigualada.cat",
+  "lien": "https://www.mostraigualada.cat/en/news/228-mostra-igualada-opens-the-artistic-call-for-p.html",
+  "sources": [
+   "https://www.mostraigualada.cat/en/news/228-mostra-igualada-opens-the-artistic-call-for-p.html"
+  ],
+  "fiabilite": "moyenne",
+  "notes": "L'appel pour cette édition (candidatures du 18 juin au 5 juillet 2026) est déjà clos. Prochain appel probable vers juin-juillet 2027 pour l'édition d'avril 2028, à surveiller sur mostraigualada.cat."
+ },
+ {
+  "nom": "Imaginarius – appel international aux artistes de l'espace public",
+  "type": "festival rue/cirque",
+  "organisateur": "Município de Santa Maria da Feira / Imaginarius",
+  "ville": "Santa Maria da Feira",
+  "region": null,
+  "pays": "Portugal",
+  "lieu": "Espace public, Santa Maria da Feira",
+  "date_limite": null,
+  "dates_evenement": null,
+  "recurrence": "annuel",
+  "edition": null,
+  "statut": "récurrent/à venir",
+  "duree_numero": null,
+  "criteres": "Artistes, collectifs et structures nationaux et internationaux travaillant la création en espace public (théâtre, danse, musique, cirque, performance, installation, nouveaux médias, pluridisciplinaire). Le clown n'est pas nommé explicitement, mais théâtre et cirque le sont.",
+  "remuneration": null,
+  "frais_inscription": null,
+  "contact": null,
+  "lien": "https://www.imaginarius.pt/en/international-open-call/",
+  "sources": [
+   "https://www.imaginarius.pt/en/international-open-call/"
+  ],
+  "fiabilite": "moyenne",
+  "notes": "L'appel pour la sélection « Imaginarius 2027 » (candidatures du 25 mai au 30 juillet 2026) est déjà clos. Festival annuel : un nouvel appel est probable mi-2027 ; dates de l'édition 2027 non trouvées, à vérifier sur imaginarius.pt. Candidature via formulaire en ligne et dossier PDF."
  }
 ]
