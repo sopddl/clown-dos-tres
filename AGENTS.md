@@ -10,7 +10,7 @@ reprendre la dernière session).
   https://claude.ai/code/routines/trig_01G5Tv7hAts1qhd7ZHvF1mHB) met à jour `src/data/appels.json` et la
   date `misAJour` de `src/data/appels.ts`, puis **pousse directement sur `main`** (choix de Sophie, sans
   validation). Ne pas modifier ces deux fichiers en parallèle d'une exécution.
-- Vérifier le rendu par capture (Chrome headless) avant de pousser ; attendre la fin du déploiement
+- Vérifier le rendu par capture (Chrome n'est plus installé : Playwright/Chromium headless dans un venv du scratchpad ; `screencapture` macOS n'a pas l'autorisation d'enregistrement d'écran) avant de pousser ; attendre la fin du déploiement
   (`gh run watch`) et contrôler la page en ligne.
 
 ## Où sont les contenus
