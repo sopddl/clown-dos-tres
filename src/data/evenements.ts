@@ -4,7 +4,7 @@
 import type { ImageMetadata } from 'astro';
 import salsaPiquante from '../assets/agenda/salsa-piquante.jpg';
 import clownologieNovembre from '../assets/agenda/clownologie-11-nov-2026.jpg';
-import shakerTroupe from '../assets/agenda/shaker-troupe.jpg';
+import shakerAffiche from '../assets/agenda/shaker-18-nov-2026.jpg';
 import sceneOuverteOctobre from '../assets/agenda/scene-ouverte-14-oct-2026.jpg';
 import sceneOuverteNovembre from '../assets/agenda/scene-ouverte-25-nov-2026.jpg';
 import flyerClownToujours from '../assets/agenda/flyer-stage-clown-toujours.jpg';
@@ -90,13 +90,17 @@ export const evenements: Evenement[] = [
 	{
 		date: 'Mercredi 18 novembre 2026',
 		jour: '2026-11-18',
-		titre: 'Shaker',
+		debut: '20:00',
+		heure: '20h',
+		titre: 'Le Shaker',
 		description:
 			'Soif de Shakespeare\u00a0? Deux acteurs et deux actrices sont là pour vous servir un cocktail condensé de pièces : tragédie, comédie, pièce historique et romance, choisies ensemble, avec le public, au début de chaque représentation. À siroter dans la fête, avec la révérence et l’irrévérence que l’on doit au vieux Barde. Venez et revenez découvrir et redécouvrir Shakespeare. Et en plus, c’est drôle\u00a0!',
-		image: shakerTroupe,
-		imageAlt: 'La troupe de Shaker en costumes de scène, réunie pour une photo souvenir',
-		compagnie: 'Compagnie Les chants égarés',
-		lieu: 'Péniche Grande Fantaisie',
+		image: shakerAffiche,
+		imageAlt: 'Affiche du Shaker, spectacle d’improvisation de la Cie Les Chants égarés, mercredi 18 novembre 2026 à 20h, Péniche Grande Fantaisie',
+		compagnie: 'Compagnie Les Chants égarés',
+		lieu: 'Péniche Grande Fantaisie, 3 quai de l’Oise, 75019 Paris',
+		prix: '12 € (réduit 8 €)',
+		reservation: true,
 		type: 'spectacle',
 	},
 	{
