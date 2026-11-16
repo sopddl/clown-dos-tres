@@ -3,6 +3,18 @@ import Layout from '../layouts/Layout.astro';
 import EventCard from '../components/EventCard.astro';
 import { evenements } from '../data/evenements';
 import { evenementSchema } from '../data/schema';
+
+// À venir (le plus proche en haut), puis déjà passés (le plus récent en haut).
+// Un événement reporté reste « à venir » jusqu'à sa nouvelle date.
+const jour = new Date().toISOString().slice(0, 10);
+const fin = (e: (typeof evenements)[number]) => e.jourFin ?? e.jour;
+const aVenir = evenements
+	.filter((e) => e.reporte || fin(e) >= jour)
+	// les reportés (nouvelle date inconnue) en fin de liste
+	.sort((a, b) => Number(!!a.reporte) - Number(!!b.reporte) || a.jour.localeCompare(b.jour));
+const passes = evenements
+	.filter((e) => !e.reporte && fin(e) < jour)
+	.sort((a, b) => b.jour.localeCompare(a.jour));
 ---
 
 <Layout
@@ -19,18 +31,62 @@ import { evenementSchema } from '../data/schema';
 				Toute la programmation des Mercredis du Clown. De nouvelles dates s'ajoutent au fil des
 				saisons — revenez régulièrement !
 			</p>
-			<div class="grid">
-				{evenements.map((evenement) => <EventCard evenement={evenement} />)}
+			<h2>À venir</h2>
+			<div class="grid" id="a-venir">
+				{
+					aVenir.map((evenement) => (
+						<div class="item" data-fin={evenement.reporte ? undefined : fin(evenement)}>
+							<EventCard evenement={evenement} />
+						</div>
+					))
+				}
+			</div>
+			<h2 class="titre-passes">Déjà passés</h2>
+			<div class="grid passes" id="passes">
+				{
+					passes.map((evenement) => (
+						<div class="item">
+							<EventCard evenement={evenement} />
+						</div>
+					))
+				}
 			</div>
 		</div>
 	</section>
 </Layout>
 
+<script>
+	// Entre deux reconstructions du site : une date passée descend dans « Déjà passés ».
+	const jour = new Date().toISOString().slice(0, 10);
+	const passes = document.getElementById('passes');
+	document.querySelectorAll<HTMLElement>('#a-venir [data-fin]').forEach((el) => {
+		if ((el.dataset.fin ?? '') < jour && passes) passes.prepend(el);
+	});
+</script>
+
 <style>
 	.grid {
 		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+		grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
 		gap: 1.5rem;
-		margin-top: 2rem;
+		margin: 1.2rem 0 2.5rem;
 	}
+
+	.item {
+		display: flex;
+	}
+
+	.item > :global(*) {
+		flex: 1;
+	}
+
+	.titre-passes {
+		opacity: 0.7;
+	}
+
+	/* Les dates passées en retrait, sans les cacher. */
+	.passes .item {
+		opacity: 0.75;
+	}
+
 </style>
