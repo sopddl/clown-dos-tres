@@ -14,6 +14,7 @@ const labels: Record<Evenement['type'], string> = {
 	clownologie: 'Clownologie',
 	cabaret: 'Cabaret',
 	spectacle: 'Spectacle',
+	concert: 'Concert',
 	stage: 'Stage',
 	atelier: 'Atelier',
 	autre: 'Rendez-vous',
@@ -38,8 +39,25 @@ const labels: Record<Evenement['type'], string> = {
 	<h3>{evenement.date}</h3>
 	{evenement.reporte ? <p class="reporte">{evenement.reporte}</p> : evenement.heure && <p class="heure">{evenement.heure}</p>}
 	<p class="titre">{evenement.titre}</p>
-	{evenement.description && <p class="desc">{evenement.description}</p>}
-	{evenement.compagnie && <p class="desc compagnie">Par la {evenement.compagnie}</p>}
+	{evenement.description && evenement.description.split('\n\n').map((para) => <p class="desc">{para}</p>)}
+	{
+		evenement.photo && (
+			<Image
+				src={evenement.photo}
+				alt={evenement.photoAlt ?? evenement.titre}
+				class="photo"
+				widths={[400, 800]}
+				sizes="(max-width: 760px) 100vw, 360px"
+			/>
+		)
+	}
+	{
+		evenement.compagnie && (
+			<p class="desc compagnie">
+				{/^Compagnie/i.test(evenement.compagnie) ? `Par la ${evenement.compagnie}` : `Par ${evenement.compagnie}`}
+			</p>
+		)
+	}
 	{
 		evenement.type === 'scene-ouverte' && (
 			<p class="desc credits">
@@ -113,6 +131,14 @@ const labels: Record<Evenement['type'], string> = {
 
 	.compagnie {
 		font-style: italic;
+	}
+
+	.photo {
+		display: block;
+		width: 100%;
+		height: auto;
+		border-radius: 3px;
+		margin-top: 0.4rem;
 	}
 
 	.visuel {

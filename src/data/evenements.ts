@@ -3,7 +3,9 @@
 
 import type { ImageMetadata } from 'astro';
 import salsaPiquante from '../assets/agenda/salsa-piquante.jpg';
-import clownologieNovembre from '../assets/agenda/clownologie-11-nov-2026.jpg';
+import clownologieDecembre from '../assets/agenda/clownologie-16-dec-2026.jpg';
+import merAffiche from '../assets/agenda/toute-la-mer-du-monde-affiche.jpg';
+import merPhoto from '../assets/agenda/toute-la-mer-du-monde-alexis-delmastro.jpg';
 import shakerAffiche from '../assets/agenda/shaker-18-nov-2026.jpg';
 import sceneOuverteOctobre from '../assets/agenda/scene-ouverte-14-oct-2026.jpg';
 import sceneOuverteNovembre from '../assets/agenda/scene-ouverte-25-nov-2026.jpg';
@@ -19,13 +21,15 @@ export type Evenement = {
 	description?: string;
 	lieu?: string;
 	prix?: string;
-	type: 'scene-ouverte' | 'clownologie' | 'cabaret' | 'spectacle' | 'atelier' | 'stage' | 'autre';
+	type: 'scene-ouverte' | 'clownologie' | 'cabaret' | 'spectacle' | 'concert' | 'atelier' | 'stage' | 'autre';
 	lien?: string;
 	compagnie?: string; // troupe invitée, affichée « Par … » et lue par Google
 	image?: ImageMetadata; // affiche ou visuel, affiché en tête de la carte (fichier dans src/assets/agenda/)
 	imageAlt?: string; // description du visuel (par défaut « Affiche : titre »)
 	lieuExterieur?: { nom: string; rue: string; codePostal: string; ville: string }; // événement hors péniche (lu par Google)
 	jourFin?: string; // AAAA-MM-JJ, événement sur plusieurs jours
+	photo?: ImageMetadata; // photo complémentaire, affichée sous le texte
+	photoAlt?: string;
 	reservation?: boolean; // affiche un bouton « Réserver » (mail à contact@)
 	reporte?: string; // date reportée/annulée : texte affiché à la place de l'heure, ex. « Reporté en décembre »
 };
@@ -58,17 +62,39 @@ export const evenements: Evenement[] = [
 		image: sceneOuverteOctobre,
 	},
 	{
-		date: 'Mercredi 11 novembre 2026',
-		jour: '2026-11-11',
+		date: 'Mercredi 16 décembre 2026',
+		jour: '2026-12-16',
 		debut: '20:30',
 		heure: '20h30',
 		titre: 'Clownologie',
-		description: 'Cabaret clown par le collectif Clown, dos, tres.',
-		lieu: 'Péniche Grande Fantaisie',
-		prix: '10 €',
-		image: clownologieNovembre,
+		description:
+			'La clownologie est peut-être, et même sans doute, oserais-je dire, la science qui changera définitivement notre façon de percevoir les relations interhumaines. Mais de cela rien n’est moins sûr. L’unique certitude : le 21ᵉ siècle sera clownesque ou ne sera pas.\n\nCabaret clown par le collectif Clown, dos, tres.',
+		lieu: 'Péniche Grande Fantaisie, 3 quai de l’Oise, 75019 Paris',
+		prix: '12 €',
+		image: clownologieDecembre,
+		imageAlt: 'Affiche Clownologie, cabaret clown du collectif Clown, dos, tres, mercredi 16 décembre 2026 à 20h30, Péniche Grande Fantaisie, entrée 12 euros',
 		type: 'clownologie',
-		reporte: 'Reporté en décembre — nouvelle date à venir',
+		reservation: true,
+	},
+	{
+		date: 'Mardi 1er décembre 2026',
+		jour: '2026-12-01',
+		debut: '20:30',
+		heure: '20h30 · durée 65 min',
+		titre: 'Toute la mer du monde',
+		description: [
+			'Ce qu’en dit la presse : « On arrive avec nos certitudes. On arrive en pensant savoir ce qu’est le son d’une guitare et l’on se trompe. On arrive en pensant savoir ce qu’est le rock et on se trompe encore. On ne sait pas, quand il arrive, que l’on va pouvoir en rire ou en pleurer, ou les deux en même temps. On ne sait pas quand ça commence ou si c’est déjà fini. Un concert sommaire où toutes nos certitudes sont balayées dès la première chanson. »',
+			'Guitare et chant : Alexis Delmastro · Musique : France Cartigny · Régie : Sabine Decarpentrie · Coach vocal : Muriel Benazeraf · Auteur : Alex(is).',
+			'Avec le soutien du Dakiling (13), de la Ville de Gaillac (81) et de La Palène (16). Plus d’infos : alexis-delmastro.com',
+		].join('\n\n'),
+		lieu: 'Péniche Grande Fantaisie, 3 quai de l’Oise, 75019 Paris',
+		compagnie: 'Alexis Delmastro',
+		type: 'concert',
+		image: merAffiche,
+		imageAlt: 'Affiche du concert Toute la mer du monde : Alexis Delmastro à la guitare, mardi 1er décembre 2026 à 20h30, Péniche Grande Fantaisie',
+		photo: merPhoto,
+		photoAlt: 'Alexis Delmastro, guitare sur l’épaule, au bord d’un champ : visuel du spectacle Toute la mer du monde',
+		reservation: true,
 	},
 	{
 		date: 'Samedis et dimanches 14-15 et 21-22 novembre 2026',
