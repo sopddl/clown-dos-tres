@@ -68,7 +68,7 @@ export const evenements: Evenement[] = [
 		heure: '20h30',
 		titre: 'Clownologie',
 		description:
-			'La clownologie est peut-être, et même sans doute, oserais-je dire, la science qui changera définitivement notre façon de percevoir les relations interhumaines. Mais de cela rien n’est moins sûr. L’unique certitude : le 21ᵉ siècle sera clownesque ou ne sera pas.\n\nCabaret clown par le collectif Clown, dos, tres.',
+			'Imaginez une science qui révolutionne définitivement notre façon de percevoir les relations interhumaines et notre rapport au monde. Une certitude : le 21ᵉ siècle sera clownesque ou ne sera pas.\n\nCabaret clown par le collectif Clown, dos, tres.',
 		lieu: 'Péniche Grande Fantaisie, 3 quai de l’Oise, 75019 Paris',
 		prix: '12 €',
 		image: clownologieDecembre,
