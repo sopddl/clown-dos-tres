@@ -23,7 +23,7 @@
    "https://www.placegrenet.fr/2024/05/13/le-festival-du-numero-de-clown-de-retour-au-parc-bachelard-de-grenoble-pour-une-dixieme-edition/629194"
   ],
   "fiabilite": "haute",
-  "notes": "Le site indique que les candidatures pour l'édition 2027 ouvriront en décembre 2026. C'est le festival le plus proche de la demande (numéros de clown). La date limite n'est pas encore publiée."
+  "notes": "Toujours fermé au 2026-11-23 : le site confirme que les candidatures pour l'édition 2027 ouvriront en décembre 2026 (pas encore ouvertes à cette date). C'est le festival le plus proche de la demande (numéros de clown). La date limite n'est pas encore publiée."
  },
  {
   "nom": "Viva Cité – sélection OFF",
@@ -104,7 +104,7 @@
    "https://www.jds.fr/chalon-sur-saone/manifestations/festival/festival-chalon-dans-la-rue-1489341_A"
   ],
   "fiabilite": "haute",
-  "notes": "Pour 2026, l'appel a couru du 1er décembre 2025 au 8 janvier 2026 : prévoir une fenêtre similaire, environ 1er décembre 2026 – début janvier 2027."
+  "notes": "Toujours fermé au 2026-11-23 : la page officielle confirme que l'appel « sera ouvert à partir du 1er décembre » (fenêtre similaire à 2026 : 1er décembre 2025 – 8 janvier 2026). Aucun appel 2027 encore publié ; prévoir une fenêtre autour du 1er décembre 2026 – début janvier 2027."
  },
  {
   "nom": "Festival international de théâtre de rue d'Aurillac – Compagnies de passage",
@@ -133,30 +133,30 @@
   "notes": "Calendrier 2026 : compagnies individuelles à partir du 23 février, finalisation au plus tard le 23 mars. Inscriptions suspendues dès que la jauge (environ 600) est atteinte ; en 2026 elles ont été limitées au bout de deux jours : s'inscrire dès l'ouverture."
  },
  {
-  "nom": "Les Zaccros d'ma rue – dispositif « Coups de pouce »",
+  "nom": "Les Zaccros d'ma rue – dispositif « Coups de Projecteur »",
   "type": "festival rue/cirque",
   "organisateur": "Association ALARUE",
   "ville": "Nevers",
   "region": "Bourgogne-Franche-Comté",
   "pays": "France",
   "lieu": "Espaces publics de Nevers",
-  "date_limite": null,
-  "dates_evenement": "2026 : 3-5 juillet ; 2027 : début de l'été (dates non publiées)",
+  "date_limite": "2027-01-15",
+  "dates_evenement": "2-4 juillet 2027",
   "recurrence": "annuel (début juillet)",
   "edition": "2027",
-  "statut": "récurrent/à venir",
+  "statut": "ouvert",
   "duree_numero": null,
-  "criteres": "Nouvelles créations de compagnies professionnelles ou émergentes. Une douzaine de compagnies retenues. Priorité affichée en 2026 aux compagnies de Bourgogne-Franche-Comté et Centre-Val de Loire. À fournir : dossier, fiche technique, photos, vidéo.",
-  "remuneration": "Transport, hébergement et restauration pris en charge ; jeu au chapeau ; pas de cachet mentionné",
+  "criteres": "Dispositif renommé « Coups de Projecteur » (anciennement « Coups de pouce »). Être une compagnie implantée en Bourgogne-Franche-Comté ou en Centre-Val de Loire. Dossier artistique, fiche technique actualisée, visuels HD, extrait vidéo ou captation intégrale.",
+  "remuneration": "Cachet de 250 € par jour de représentation et par personne, forfait transport de 200 €, hébergement et repas pris en charge les jours de représentation.",
   "frais_inscription": null,
-  "contact": "coupsdepouce@zaccros.org ; 03 86 61 17 80",
+  "contact": "coupsdeprojecteur@zaccros.org ; 03 86 61 17 80 ; 12 quai de Médine, 58000 Nevers",
   "lien": "https://www.zaccros.org/le-festival/candidature-dispositif-coups-de-pouce/",
   "sources": [
    "https://www.zaccros.org/le-festival/candidature-dispositif-coups-de-pouce/",
    "https://www.zaccros.org/actualites/festival/candidatez-au-coups-de-pouce/"
   ],
   "fiabilite": "haute",
-  "notes": "Date limite 2026 : 31 janvier 2026. Le site annonce une ouverture de l'appel 2027 vers novembre ou décembre 2026."
+  "notes": "Appel 2027 ouvert du 15 novembre 2026 au 15 janvier 2027. Attention : la formulation « être une compagnie implantée en Bourgogne-Franche-Comté ou Centre-Val de Loire » semble désormais une condition d'éligibilité (et non plus une simple priorité comme en 2026) — à confirmer auprès de l'organisation avant de candidater depuis Paris."
  },
  {
   "nom": "Fest'arts – OFF « Les Primeurs »",
@@ -166,24 +166,24 @@
   "region": "Nouvelle-Aquitaine",
   "pays": "France",
   "lieu": "Centre-ville de Libourne",
-  "date_limite": null,
-  "dates_evenement": "2026 : 6-8 août (35e édition)",
+  "date_limite": "2027-01-22",
+  "dates_evenement": "5-7 août 2027 (36e édition)",
   "recurrence": "annuel (début août)",
-  "edition": "2027",
-  "statut": "récurrent/à venir",
+  "edition": "36e (2027)",
+  "statut": "ouvert",
   "duree_numero": null,
-  "criteres": "Jeunes compagnies professionnelles avec un spectacle fraîchement créé. Candidature par formulaire en ligne. Environ 12 compagnies retenues.",
+  "criteres": "Jeunes compagnies professionnelles avec un spectacle fraîchement créé. Candidature par formulaire en ligne. Environ 12 compagnies retenues. Sélection annoncée début mars 2027.",
   "remuneration": "Non précisée. Prix « Coup de cœur » du public : intégration à la programmation IN de l'édition suivante.",
   "frais_inscription": null,
-  "contact": "festarts@libourne.fr ; 05 57 74 13 14",
-  "lien": "https://www.festarts.com/",
+  "contact": "Théâtre Le Liburnia / Fest'arts, 14 rue Donnet, 33500 Libourne ; festarts@libourne.fr ; 05 57 74 13 14",
+  "lien": "https://www.festarts.com/appel-a-candidatures-primeurs-2027/",
   "sources": [
+   "https://www.festarts.com/appel-a-candidatures-primeurs-2027/",
    "https://www.festarts.com/appel-a-candidatures-primeurs-2026/",
-   "https://quoifaireabordeaux.com/festarts-2026-festival-arts-rue-libourne/",
    "https://www.festarts.com/"
   ],
   "fiabilite": "haute",
-  "notes": "Date limite 2026 : vendredi 23 janvier 2026, sélection annoncée début mars. Appel 2027 probable vers décembre-janvier ; pas encore publié au 2026-11-09 (page 2026 et espace-pro introuvables)."
+  "notes": "Appel 2027 ouvert, date limite le 22 janvier 2027."
  },
  {
   "nom": "MIMOS – OFF (festival des arts du geste)",
@@ -444,7 +444,7 @@
    "https://espace-avelvor.bzh/evenement/tremplin-de-lhumour-2/"
   ],
   "fiabilite": "haute",
-  "notes": "Le site annonce l'ouverture des inscriptions fin novembre 2026."
+  "notes": "Toujours fermé au 2026-11-23 : le site confirme une ouverture des inscriptions fin novembre 2026 (imminente, pas encore ouverte à cette date)."
  },
  {
   "nom": "Tremplin des Plages du Rire",
@@ -1198,7 +1198,7 @@
   "pays": "Portugal",
   "lieu": "Espace public, Santa Maria da Feira",
   "date_limite": null,
-  "dates_evenement": null,
+  "dates_evenement": "21-23 mai 2027",
   "recurrence": "annuel",
   "edition": null,
   "statut": "récurrent/à venir",
@@ -1209,9 +1209,37 @@
   "contact": null,
   "lien": "https://www.imaginarius.pt/en/international-open-call/",
   "sources": [
-   "https://www.imaginarius.pt/en/international-open-call/"
+   "https://www.imaginarius.pt/en/international-open-call/",
+   "https://www.fedec.eu/en/article/963-international-open-call-for-artists-imaginarius-2027-20-22-may-2027-santa-maria-da-feira-prt"
   ],
   "fiabilite": "moyenne",
-  "notes": "L'appel pour la sélection « Imaginarius 2027 » (candidatures du 25 mai au 30 juillet 2026) est déjà clos. Festival annuel : un nouvel appel est probable mi-2027 ; dates de l'édition 2027 non trouvées, à vérifier sur imaginarius.pt. Candidature via formulaire en ligne et dossier PDF."
+  "notes": "L'appel pour l'édition 2027 (candidatures du 25 mai au 30 juillet 2026) est déjà clos. Dates de l'édition 2027 confirmées : 21-23 mai 2027. Prochain appel probable mi-2027 pour l'édition 2028, à vérifier sur imaginarius.pt. Candidature via formulaire en ligne et dossier PDF."
+ },
+ {
+  "nom": "Estrena't Clown – cycle de cabaret clown",
+  "type": "concours",
+  "organisateur": "Ajuntament de Barcelona (Centre Cívic Casa Groga)",
+  "ville": "Barcelone",
+  "region": null,
+  "pays": "Espagne",
+  "lieu": "Casa Groga (Centre Cívic)",
+  "date_limite": null,
+  "dates_evenement": "Édition annuelle, dates non publiées pour 2026-27",
+  "recurrence": "annuel (appel vers janvier-février)",
+  "edition": null,
+  "statut": "récurrent/à venir",
+  "duree_numero": "15 min maximum",
+  "criteres": "Cycle participatif donnant une visibilité à des artistes, compagnies ou collectifs de clown. Sélection par un jury et/ou le public (modalités précises non lisibles dans le PDF des bases).",
+  "remuneration": "Les lauréats obtiennent un passage rémunéré à la Fira del Circ al Carrer (La Bisbal d'Empordà) et dans la programmation de Casa Groga en cours d'année.",
+  "frais_inscription": null,
+  "contact": "cccasagroga@qsl.cat",
+  "lien": "https://ajuntament.barcelona.cat/ccivics/files/1736436083_Bases Estrena't clown 2025.pdf",
+  "sources": [
+   "https://ajuntament.barcelona.cat/ccivics/files/1736436083_Bases Estrena't clown 2025.pdf",
+   "https://ajuntament.barcelona.cat/ccivics/files/1704726844_Bases Estrena't clown 2024.pdf",
+   "https://ajuntament.barcelona.cat/centrescivics/sites/default/files/estrenatclown23_bases.pdf"
+  ],
+  "fiabilite": "moyenne",
+  "notes": "Éditions 2023 (clôture vers le 1er février), 2024 et 2025 (clôture le 12 février 2025) confirmées. Aucune édition 2026 ou 2027 trouvée au 2026-11-23 : fenêtre probable janvier-février 2027, à surveiller sur ajuntament.barcelona.cat (rubrique ccivics) ou auprès de cccasagroga@qsl.cat. Le PDF des bases n'a pas pu être entièrement lu : l'éligibilité des compagnies hors Espagne n'est pas confirmée, à vérifier avant de candidater."
  }
 ]
