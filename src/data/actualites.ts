@@ -53,11 +53,6 @@ export const actualites: Actualite[] = [
 		imageAlt: 'Une clown au nez rouge et au casque à ressorts, dans « Cuántos Cuentos Cuentas », mis en scène par François Durègne à Mexico en 2011',
 		legende: '« Cuántos Cuentos Cuentas », mise en scène et dramaturgie François Durègne – Mexico, 2011',
 		flyer: flyerClownToujours,
-		aLaUne: {
-			titre: 'Stage « Clown toujours » avec François Durègne',
-			quand: '14-15 et 21-22 novembre · Théâtre de l’Opprimé, Paris 12e',
-			jusquAu: '2026-11-22',
-		},
 		evenement: {
 			debut: '2026-11-14',
 			fin: '2026-11-22',
